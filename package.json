@@ -1,6 +1,6 @@
 {
   "name": "react-carousel-slider",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "react-carousel-slider React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,7 +27,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
-  "author": "",
+  "author": "Carr",
   "homepage": "",
   "license": "MIT",
   "repository": "",
