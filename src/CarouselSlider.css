@@ -1,0 +1,143 @@
+.sliderSet {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+
+.sliderBox {
+    overflow-x: hidden;
+    border-radius: 2px;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+/*  	flex-direction: column;
+  	justify-content: center;*/
+  	position: relative;
+}
+
+.slideCon {
+	position: relative;
+	display: flex;
+ 	align-items: center;
+	width: auto;
+}
+
+.flag {
+	
+	height: 90%;
+	background-color: rgba(91, 97, 107, 0.5);
+	flex: 1 0;
+	/*width:100%;*/
+    margin: 0px;
+
+}
+
+.slideCon .itemWrapper {
+	display: block;
+	height: 90%;
+	position: relative;
+	border-radius: 2px;
+	
+}
+
+.slideCon .itemWrapper img {
+	display: block;
+	/*height: ;*/
+	height: 100%;
+	width: auto;
+}
+
+.slideCon .itemWrapper a {
+	height: 100%;
+	width: auto;
+}
+
+.slideCon .itemWrapper div {
+	height: 100%;
+	width: auto;
+}
+
+
+.slideCon .itemWrapper p {
+	width: 75%;
+	color: white;
+	padding:10px;
+	top: 80%;
+	background: rgba(117, 117, 117, .6);
+    border-radius: 2px;
+    text-align: center;
+/*------------------------*/
+	position: absolute;
+	/*opacity: 1;*/
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transform: translateY(-50%);	
+}
+
+.buttonSet {	
+	display: flex;
+	justify-content: center;
+	z-index: 2000;
+	
+}
+
+.sliderBox:hover .buttonWrapper {
+	opacity: 1 !important;
+}
+
+.sliderBox:hover ~ .buttonSet .buttonWrapper {
+	opacity: 1 !important;
+}
+
+.arrowBtn {
+	/*costum*/
+}
+
+.buttonSet .buttonWrapper {
+
+	cursor: pointer;
+	opacity: .6;
+	transition: all 0.3s ease;
+	z-index: 2000;
+}
+
+.buttonSet .buttonWrapper:hover {
+	opacity: 1;
+}
+
+.buttonWrapper {
+
+	cursor: pointer;
+	opacity: .6;
+	transition: all 0.3s ease;
+	z-index: 2000;
+	/*opacity: 0;*/
+}
+
+.previous:before {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	content: '\003c';
+}
+
+.next:before {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	content: '\003e';
+}
+
+.right {
+	position: absolute;
+	right: 0px;
+}
+
+.left {
+	position: absolute;
+	left: 0px;
+}
