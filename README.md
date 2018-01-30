@@ -35,20 +35,18 @@ import CarouselSlider from 'react-carousel-slider';
 
 class App extends Component {
     render() {
-        let data = {
-            items: [
-                {
-                    des: "1",
-                    imgSrc: "https://i.imqur.com/yourImage.jpg"
-                },
-                {
-                    des: "2",
-                    imgSrc: "https://i.imqur.com/yourImage2.jpg"
-                }
-            ]
-        };
+        let data = [
+            {
+                des: "1",
+                imgSrc: "https://i.imqur.com/yourImage.jpg"
+            },
+            {
+                des: "2",
+                imgSrc: "https://i.imqur.com/yourImage2.jpg"
+            }
+        ];
         
-        return <CarouselSlider slideItems = {data.items} />;
+        return <CarouselSlider slideItems = {data} />;
     }
 }
 ```
