@@ -10,17 +10,17 @@ Install it from npm.
 ```js
 npm install react-carousel-slider
 ```
-As ES module
+As ES module:
 ```js
 import CarouselSlider from "react-carousel-slider"
 ```
-As CommonJS module
+As CommonJS module:
 ```js
 var CarouselSlider = require("react-carousel-slider")
 ```
 
-The UMD build: 
-```js
+The UMD build:
+```html 
 <script src="https://unpkg.com/react-carousel-slider/umd/react-carousel-slider.js"></script>
 ```
 
