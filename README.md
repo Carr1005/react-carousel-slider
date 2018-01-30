@@ -92,6 +92,8 @@ class App extends Component {
 
 ## Allowable Props
 
+The **Key** without prefixng a ' * ' is pure css property, what we filled in column **Value** are just recommended for
+anticipated purpose, feel free to try anything if things are under control.
 * `sliderBoxStyle` - accepts an object.
 
 | Key | Value | Default | Description & Notice |
