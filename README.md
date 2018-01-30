@@ -26,7 +26,7 @@ The UMD build:
 
 ## Usage
 
-We could render a <CarouselSlider> component with the `slideItems` prop which accepts a array of object with the specific simple sturcture and keys in defalut style.
+We could render a <CarouselSlider> component with the `slideItems` prop which accepts a array of objects with the specific simple sturcture and keys in defalut style.
 
 ```jsx
 
