@@ -26,7 +26,7 @@ The UMD build:
 
 ## Usage
 
-We could render a <CarouselSlider> component with the `slideItems` prop which accepts a array of objects with the specific simple sturcture and keys in default style.
+We could render a <CarouselSlider> component with the `slideItems` prop which accepts an array of objects with the specific simple sturcture and keys in default style.
 
 ```jsx
 
@@ -50,7 +50,7 @@ class App extends Component {
     }
 }
 ```
-Or give a array of your own regular React elements to `slideCpnts` prop, this lets our slide have availability to contain a clickable link. Even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
+Or give an array of your own regular React elements to `slideCpnts` prop, this lets our slide have availability to contain a clickable link. Even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
 
 ```jsx
 
@@ -89,6 +89,20 @@ class App extends Component {
     }
 }
 ```
+
+## Allowable Props
+
+* `sliderBoxStyle` - accepts an object.
+
+| Key | Value | Default | Description & Notice |
+|:---|:---|:---|:---|
+| height | 	`<length>`, `<percentage>` | 400px |  |
+| width | `<length>`, `<percentage>` | 90% | |
+| background | rgb(), rgba(), hex value | #EEEEEE | |
+| border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | | 
+
+
+
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-carousel-slider
