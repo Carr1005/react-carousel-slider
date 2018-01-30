@@ -50,7 +50,7 @@ class App extends Component {
     }
 }
 ```
-Or give a array of your own regular React elements to `slideCpnts` prop, so we could let our slide contain a clickable link, even cooperating with <Link> component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
+Or give a array of your own regular React elements to `slideCpnts` prop, so we could let our slide contain a clickable link, even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-carousel-slider
