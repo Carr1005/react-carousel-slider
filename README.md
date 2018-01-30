@@ -50,7 +50,7 @@ class App extends Component {
     }
 }
 ```
-Or give a array of your own regular React elements to `slideCpnts` prop, so we could let our slide contain a clickable link, even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
+Or give a array of your own regular React elements to `slideCpnts` prop, this lets our slide have availability to contain a clickable link. Even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
 
 ```jsx
 
@@ -77,7 +77,7 @@ class App extends Component {
         */
         
         let items = jsonData.items.map((item, index) => 
-            <Link to = {'/'+index} key = {index}>
+            <Link to = {'/' + item.des} key = {index} >
                 <img src = {item.imgSrc} ></img>
                 <p>{item.des}</p>
             </Link>
