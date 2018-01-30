@@ -92,7 +92,7 @@ class App extends Component {
 
 ## Allowable Props
 * `slidesItems` -  accepts an array of objects, the required structure and keys are described in the first example above.
-* `slidesCpnts` -  accepts an array of regular React elements, the required structure is not really limited, we have [default style]() for `<p>` block, override it by specify your own by using inline style.
+* `slidesCpnts` -  accepts an array of regular React elements, the required structure is not really limited, we have [default style]() for `<p>` block, override it by specifying your own with inline-styles.
 ```jsx
     let textBoxStyle = {
         width: "50%",
@@ -108,8 +108,8 @@ class App extends Component {
     );
 ```
 
-The **Key** without prefixng a ' * ' is pure css property, what we filled in column **Value** are just recommended for
-anticipated purpose, feel free to try anything if things are under control.
+The **Key** without prefixng a ' * ' is pure css property, what we filled in column **Value** are just recommended because of
+anticipated purpose, feel free to try if things are under control.
 
 * `sliderBoxStyle` - accepts an object.
 
