@@ -134,8 +134,9 @@ class App extends Component {
 | * autoSliding | `{interval: "?s" }` | `false` | Interval between sliding, suffix 's'(seconds)</br>is required, only giving `true` is ineffectual.|
 | * circular    | `true \| false`     | `true`  |                      | 
 | * duration    | `"?s"`              | `"0.5s"`|                      |
-| * flag        | `true \| false`     | `false` |                      |
 | * button      | `true \| false`     | `true`  | Wheather to render button or not, it may</br>be set to `false` in mobile device viewport.|
+| * flag        | `true \| false`     | `false` |                      |
+
 
 * `buttonSetting` - accepts an object, defines a,
 
@@ -145,7 +146,7 @@ class App extends Component {
 | * hoverEvent  | `true \| false`         | `false`    |                      |
 | * style       | `{left: {}, right: {}}` |            |                      |
 
-Recommended keys and values in object that `buttonSetting.style.left` and `buttonSetting.style.right` accepts.
+Recommended keys and values in object which `buttonSetting.style.left` or `buttonSetting.style.right` accepts.
 
 | Key             | Value                            | Default      | Description & Notice |
 |      :---       |      :---:                       |   :---:      |         :---         |
@@ -158,7 +159,7 @@ Recommended keys and values in object that `buttonSetting.style.left` and `butto
 | "border-radius" | `<length>` \| `<percentage>`     |  `"2px"`     |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `"none"` | |
  
-* `lBtnCpnt`,  `rBtnCpnt` - Both accepts a regular React element. Use these props to give our own designed button, see the example in [Demo]().
+* `lBtnCpnt`, `rBtnCpnt` - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
 
 * `sliderBoxStyle` - accepts an object.
 
@@ -169,7 +170,7 @@ Recommended keys and values in object that `buttonSetting.style.left` and `butto
 | background      | `rgb()` \| `rgba()` \| hex value | `"#EEEEEE"`  |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | | 
 
-* `itemsStyle` -
+* `itemsStyle` - accepts an object.
 
 | Key             | Value                              | Default      | Description & Notice |
 |      :---       |        :---:                       |  :---:       |  :---                |
@@ -178,7 +179,7 @@ Recommended keys and values in object that `buttonSetting.style.left` and `butto
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
 | margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
 
-* `textBoxStyle` <a id="textBoxStyle"></a>
+* `textBoxStyle` <a id="textBoxStyle"></a> accepts an object.
 
 | Key             | Value                          | Default                       | Description & Notice |
 |      :---       |             :---:                |   :---:                     |    :---              |
