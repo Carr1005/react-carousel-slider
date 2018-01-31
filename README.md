@@ -106,7 +106,7 @@ class App extends Component {
         }
     ]
 ```
-* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style]() for `<p>` block, override it by specifying your own with using inline-styles.
+* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style](#textBoxStyle) for `<p>` block, override it by specifying your own with using inline-styles.
     
 ```jsx
     let textBoxStyle = {
@@ -180,7 +180,7 @@ Recommended keys and values in object that `buttonSetting.style.left` and `butto
 | background      | `rgb()`, `rgba()`, hex value   | `#EEEEEE`  |                      |
 | margin          | `0px ?px`                      | `0px 40px` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
 
-* `textBoxStyle`
+* `textBoxStyle` <a id="textBoxStyle"></a>
 
 | Key             | Value                          | Default                   | Description & Notice |
 |      :---       |             :---:              |   :---:                   |    :---              |
