@@ -112,7 +112,7 @@ class App extends Component {
     );
 ```
 ***
-* All props below are optional, they apply default setting if we don't specify ours.
+* All props below are optional, default setting is aplied if we don't specify ours.
 * The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object.
@@ -146,7 +146,8 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | "border-radius" | "?px" | 2px | |
 | border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | |
  
-
+* `lBtnCpnt`
+* `rBtnCpnt`
 
 * `sliderBoxStyle` - accepts an object.
 
@@ -165,6 +166,18 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | padding | `<length>`, `<percentage>` | `3px` | |
 | background | rgb(), rgba(), hex value | `#EEEEEE` | |
 | margin | `0px ?px` | `0px 40px` | To decide the space between slides</br>, only accept value in form `0px ?px` now. | 
+
+* `textBoxStyle`
+
+| Key | Value | Default | Description & Notice |
+|:-------|:-------:|:---------:|:--|
+| color | hex value | `#ffffff` |  |
+| padding | `<length>`, `<percentage>` | `10px` | |
+| background | rgb(), rgba(), hex value | `rgba(117, 117, 117, .6)` | |
+| "border-radius" | "?px" | `2px` | |
+| "text-align" | `left \| right \| center` | `center` | |
+| width | `<length>`, `<percentage>` | `75%` |  |
+| top | `<length>`, `<percentage>` | `80%` | To adjust vertical position</br>, `50%` for centering|
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
