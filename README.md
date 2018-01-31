@@ -103,6 +103,7 @@ class App extends Component {
         textAlign: "right",
         color: "black"
     };
+    
     let items = jsonData.items.map((item, index) => 
         <div>
             <img src = {item.imgSrc} ></img>
