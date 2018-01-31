@@ -124,8 +124,8 @@ class App extends Component {
     );
 ```
 ***
-* All props below are optional, default setting is applied if we don't specify ours.
-* The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
+All props below are optional, default setting is applied if we don't specify ours.
+The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object, defines how your carousel / slider performs animating.
 
@@ -138,13 +138,13 @@ class App extends Component {
 | * flag        | `true \| false`     | `false` |                      |
 
 
-* `buttonSetting` - accepts an object, defines a,
+* `buttonSetting` - accepts an object.
 
-| Key           | Value                   | Default    | Description & Notice |
-|:---           |      :---:              |:---:       |:---                  |
-| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` |                      |
-| * hoverEvent  | `true \| false`         | `false`    |                      |
-| * style       | `{left: {}, right: {}}` |            |                      |
+| Key           | Value                   | Default      | Description & Notice |
+|:---           |      :---:              |:---:         |:---                  |
+| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` | Only options in column **Value** are</br>available, fine-tune the position with `margin`</br>property in `style.left` / `style.right`|
+| * hoverEvent  | `true \| false`         | `false`      | Buttons are only visible when the</br>cursor hover on the slider. |
+| * style       | `{left: {}, right: {}}` |              |                      |
 
 Recommended keys and values in object which `buttonSetting.style.left` or `buttonSetting.style.right` accepts.
 
