@@ -113,71 +113,71 @@ class App extends Component {
 ```
 ***
 * All props below are optional, default setting is aplied if we don't specify ours.
-* The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
+* The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object.
 
-| Key | Value | Default | Description & Notice |
-|:---|:---:|:---:|:---|
-| * autoSliding | `{interval: "?s" }` | `false` |  |
-| * circular | `true \| false` | `true` | |
-| * duration | `"?s"` | `"0.5s"` | |
-| * flag | `true \| false` | `false` | |
-| * button | `true \| false` | `true` | |
+| Key           | Value               | Default | Description & Notice |
+|:---           |      :---:          |:---:    |:---                  |
+| * autoSliding | `{interval: "?s" }` | `false` |                      |
+| * circular    | `true \| false`     | `true`  |                      | 
+| * duration    | `"?s"`              | `"0.5s"`|                      |
+| * flag        | `true \| false`     | `false` |                      |
+| * button      | `true \| false`     | `true`  |                      |
 
 * `buttonSetting` - accepts an 
 
-| Key | Value | Default | Description & Notice |
-|:---|:---:|:---:|:---|
-| * placeOn | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath` | `top-left` |  |
-| * hoverEvent | `true \| false` | `false` | |
-| * style | `{left: {}, right: {}}` | | |
+| Key           | Value                   | Default    | Description & Notice |
+|:---           |      :---:              |:---:       |:---                  |
+| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `top-left` |                      |
+| * hoverEvent  | `true \| false`         | `false`    |                      |
+| * style       | `{left: {}, right: {}}` |            |                      |
 
 Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.style.right` accept
 
-| Key | Value | Default | Description & Notice |
-|:---|:---:|:---:|:---|
-| color | hex value | #ffffff |  |
-| background | rgb(), rgba(), hex value | #757575 | |
-| height | `<length>` | 30px | |
-| width | `<length>` | 30px | |
-| margin | `<length>` | 10px | |
-| "font-size" | "?px" | 20px | |
-| "border-radius" | "?px" | 2px | |
-| border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | |
+| Key             | Value                      | Default    | Description & Notice |
+|      :---       |      :---:                 |   :---:    |         :---         |
+| color           | hex value                  |  `#ffffff` |                      |
+| background      | rgb(), rgba(), hex value   |  `#757575` |                      |
+| height          |    `<length>`              |  `30px`    |                      |
+| width           |    `<length>`              |  `30px`    |                      |
+| margin          |    `<length>`              |  `10px`    |                      |
+| "font-size"     |    `<length>`              |  `20px`    |                      |
+| "border-radius" | `<length>`, `<percentage>` |  `2px`     |                      |
+| border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | |
  
 * `lBtnCpnt`
 * `rBtnCpnt`
 
 * `sliderBoxStyle` - accepts an object.
 
-| Key | Value | Default | Description & Notice |
-|:---|:---:|:---:|:---|
-| height | 	`<length>`, `<percentage>` | 400px |  |
-| width | `<length>`, `<percentage>` | 90% | |
-| background | rgb(), rgba(), hex value | #EEEEEE | |
-| border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | | 
+| Key             | Value                          | Default    | Description & Notice |
+|      :---       |             :---:              |   :---:    |    :---              |
+| height          | 	`<length>`, `<percentage>` | `400px`    |                      |
+| width           | `<length>`, `<percentage>`     | `90%`      |                      |
+| background      | rgb(), rgba(), hex value       | `#EEEEEE`  |                      |
+| border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | | 
 
 * `itemsStyle` -
 
-| Key | Value | Default | Description & Notice |
-|:-------|:-------:|:---------:|:--|
-| height | 	`<length>`, `<percentage>` | `400px` | |
-| padding | `<length>`, `<percentage>` | `3px` | |
-| background | rgb(), rgba(), hex value | `#EEEEEE` | |
-| margin | `0px ?px` | `0px 40px` | To decide the space between slides</br>, only accept value in form `0px ?px` now. | 
+| Key             | Value                          | Default    | Description & Notice |
+|      :---       |        :---:                   |  :---:     |  :---                |
+| height          | `<length>`, `<percentage>`     | `400px`    |                      |
+| padding         | `<length>`, `<percentage>`     | `3px`      |                      |
+| background      | rgb(), rgba(), hex value       | `#EEEEEE`  |                      |
+| margin          | `0px ?px`                      | `0px 40px` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
 
 * `textBoxStyle`
 
-| Key | Value | Default | Description & Notice |
-|:-------|:-------:|:---------:|:--|
-| color | hex value | `#ffffff` |  |
-| padding | `<length>`, `<percentage>` | `10px` | |
-| background | rgb(), rgba(), hex value | `rgba(117, 117, 117, .6)` | |
-| "border-radius" | "?px" | `2px` | |
-| "text-align" | `left \| right \| center` | `center` | |
-| width | `<length>`, `<percentage>` | `75%` |  |
-| top | `<length>`, `<percentage>` | `80%` | To adjust vertical position</br>, `50%` for centering|
+| Key             | Value                          | Default                   | Description & Notice |
+|      :---       |             :---:              |   :---:                   |    :---              |
+| color           | hex value                      | `#ffffff`                 |                      |
+| padding         | `<length>`, `<percentage>`     | `10px`                    |                      |
+| background      | rgb(), rgba(), hex value       | `rgba(117, 117, 117, .6)` |                      |
+| "border-radius" | `<length>`, `<percentage>`     | `2px`                     |                      |
+| "text-align"    | `left \| right \| center`      | `center`                  |                      |
+| width           | `<length>`, `<percentage>`     | `75%`                     |                      |
+| top             | `<length>`, `<percentage>`     | `80%`                     | To adjust vertical position</br>, `50%` for centering|
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
