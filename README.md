@@ -132,7 +132,23 @@ class App extends Component {
 | * placeOn | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath` | `top-left` |  |
 | * hoverEvent | `true \| false` | `false` | |
 | * style | `{left: {}, right: {}}` | | |
-    
+
+Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.style.left` accept
+
+| Key | Value | Default | Description & Notice |
+|:---|:---:|:---:|:---|
+| color | hex value | #ffffff |  |
+| background | rgb(), rgba(), hex value | #757575 | |
+| height | `<length>` | 30px | |
+| width | `<length>` | 30px | |
+| margin | `<length>` | 10px | |
+| "font-size" | "?px" | 20px | |
+| "border-radius" | "?px" | 2px | |
+| border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | |
+ 
+
+
+
 * `sliderBoxStyle` - accepts an object.
 
 | Key | Value | Default | Description & Notice |
