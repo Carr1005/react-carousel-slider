@@ -35,6 +35,7 @@ import CarouselSlider from 'react-carousel-slider';
 
 class App extends Component {
     render() {
+    
         let data = [
             {
                 des: "1",
@@ -60,6 +61,7 @@ import {BrowserRouter as Router, Link } from 'react-router-dom';
 
 class App extends Component {
     render() {
+    
         let jsonData = require('./slidesExample.json');
         /*
             {
@@ -112,6 +114,16 @@ class App extends Component {
 
 The **Key** without prefixng a  ' * '  is pure css property, what we filled in column **Value** are just recommended because of
 anticipated purpose, feel free to try if things are under control.
+
+* `manner` - accepts an object.
+
+| Key | Value | Default | Description & Notice |
+|:---|:---|:---|:---|
+| * autoSliding | `{interval: "?s" }` | `false` |  |
+| * circular | `true \| false` | `true` | |
+| * duration | `"?s"` | `"0.5s"` | |
+| * flag | `true | false` | `false` | |
+| * button | `true | false` | `true` | |
 
 * `sliderBoxStyle` - accepts an object.
 
