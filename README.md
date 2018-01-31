@@ -158,7 +158,13 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | background | rgb(), rgba(), hex value | #EEEEEE | |
 | border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | | 
 
-
+* `itemsStyle` -
+| Key | Value | Default | Description & Notice |
+|:---|:---:|:---:|:---|
+| height | 	`<length>`, `<percentage>` | 400px |  |
+| padding | `<length>`, `<percentage>` | 3px | |
+| background | rgb(), rgba(), hex value | #EEEEEE | |
+| margin | in form of `0px ?px` | `0px 40px` | | 
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
