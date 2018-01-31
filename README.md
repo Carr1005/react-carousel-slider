@@ -79,7 +79,7 @@ class App extends Component {
         */
         
         let items = jsonData.items.map((item, index) => 
-            <Link to = {'/' + item.des} key = {index} >
+            <Link to = {'/' + item.des} >
                 <img src = {item.imgSrc} ></img>
                 <p>{item.des}</p>
             </Link>
@@ -94,7 +94,7 @@ class App extends Component {
 
 ## Allowable Props
 * `slidesItems` -  accepts an array of objects, the required structure and keys are described in the first example above.
-* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have [default style]() for `<p>` block, override it by specifying your own with inline-styles.
+* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have [default style]() for `<p>` block, override it by specifying your own with using inline-styles.
     
 ```jsx
     let textBoxStyle = {
