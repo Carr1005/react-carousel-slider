@@ -159,6 +159,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | border | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | none | | 
 
 * `itemsStyle` -
+
 | Key | Value | Default | Description & Notice |
 |:---|:---:|:---:|:---|
 | height | 	`<length>`, `<percentage>` | 400px |  |
