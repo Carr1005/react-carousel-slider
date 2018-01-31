@@ -127,7 +127,7 @@ class App extends Component {
 * All props below are optional, default setting is applied if we don't specify ours.
 * The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
-* `manner` - accepts an object, defines how your carousel / slider perform animating
+* `manner` - accepts an object, defines how your carousel / slider performs animating.
 
 | Key           | Value               | Default | Description & Notice |
 |:---           |      :---:          |:---:    |:---                  |
@@ -135,9 +135,9 @@ class App extends Component {
 | * circular    | `true \| false`     | `true`  |                      | 
 | * duration    | `"?s"`              | `"0.5s"`|                      |
 | * flag        | `true \| false`     | `false` |                      |
-| * button      | `true \| false`     | `true`  |                      |
+| * button      | `true \| false`     | `true`  | Wheather to render button or not, it may</br>be set to `false` in mobile device viewport.|
 
-* `buttonSetting` - accepts an 
+* `buttonSetting` - accepts an object, defines a,
 
 | Key           | Value                   | Default    | Description & Notice |
 |:---           |      :---:              |:---:       |:---                  |
@@ -158,9 +158,7 @@ Recommended keys and values in object that `buttonSetting.style.left` and `butto
 | "border-radius" | `<length>`, `<percentage>`   |  `2px`     |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | |
  
-* `lBtnCpnt` - accepts a regular React element, this let you can design your own button,see the example in [Deom]
-
-* `rBtnCpnt`
+* `lBtnCpnt`,  `rBtnCpnt` - Both accepts a regular React element. Use these props to give our own designed button, see the example in [Demo]().
 
 * `sliderBoxStyle` - accepts an object.
 
