@@ -200,7 +200,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | "border-radius" | `<length>` \| `<percentage>`     | `"2px"`                     |                      |
 | "text-align"    | `left \| right \| center`        | `"center"`                  |                      |
 | width           | `<length>` \| `<percentage>`     | `"75%"`                     |                      |
-| top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position</br>, `50%` for centering|
+| top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering|
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
