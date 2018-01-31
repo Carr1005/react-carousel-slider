@@ -133,7 +133,7 @@ class App extends Component {
 | * hoverEvent | `true \| false` | `false` | |
 | * style | `{left: {}, right: {}}` | | |
 
-Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.style.left` accept
+Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.style.right` accept
 
 | Key | Value | Default | Description & Notice |
 |:---|:---:|:---:|:---|
