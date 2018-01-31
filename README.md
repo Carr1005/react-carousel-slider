@@ -125,6 +125,8 @@ class App extends Component {
 ```
 ***
 All props below are optional, default setting is applied if we don't specify ours.
+
+
 The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
 ***
@@ -200,7 +202,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | "border-radius" | `<length>` \| `<percentage>`     | `"2px"`                     |                      |
 | "text-align"    | `left \| right \| center`        | `"center"`                  |                      |
 | width           | `<length>` \| `<percentage>`     | `"75%"`                     |                      |
-| top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering|
+| top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering.|
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
