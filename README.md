@@ -93,8 +93,20 @@ class App extends Component {
 ```
 
 ## Allowable Props
-* `slidesItems` -  accepts an array of objects, the required structure and keys are described in the first example above.
-* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have [default style]() for `<p>` block, override it by specifying your own with using inline-styles.
+* `slidesItems` -  accepts an array of objects, specific structure and keys are required.
+```js
+    [
+        {
+            des: "1",
+            imgSrc: "https://i.imqur.com/yourImage.jpg"
+        },
+        {
+            des: "2",
+            imgSrc: "https://i.imqur.com/yourImage2.jpg"
+        }
+    ]
+```
+* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style]() for `<p>` block, override it by specifying your own with using inline-styles.
     
 ```jsx
     let textBoxStyle = {
@@ -112,14 +124,14 @@ class App extends Component {
     );
 ```
 ***
-* All props below are optional, default setting is aplied if we don't specify ours.
+* All props below are optional, default setting is applied if we don't specify ours.
 * The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
-* `manner` - accepts an object.
+* `manner` - accepts an object, defines how your carousel / slider perform animating
 
 | Key           | Value               | Default | Description & Notice |
 |:---           |      :---:          |:---:    |:---                  |
-| * autoSliding | `{interval: "?s" }` | `false` |                      |
+| * autoSliding | `{interval: "?s" }` | `false` | Interval between sliding, suffix 's'(seconds)</br>is required, only giving `true` is ineffectual.|
 | * circular    | `true \| false`     | `true`  |                      | 
 | * duration    | `"?s"`              | `"0.5s"`|                      |
 | * flag        | `true \| false`     | `false` |                      |
@@ -133,20 +145,21 @@ class App extends Component {
 | * hoverEvent  | `true \| false`         | `false`    |                      |
 | * style       | `{left: {}, right: {}}` |            |                      |
 
-Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.style.right` accept
+Recommended keys and values in object that `buttonSetting.style.left` and `buttonSetting.style.right` accepts.
 
-| Key             | Value                      | Default    | Description & Notice |
-|      :---       |      :---:                 |   :---:    |         :---         |
-| color           | hex value                  |  `#ffffff` |                      |
-| background      | rgb(), rgba(), hex value   |  `#757575` |                      |
-| height          |    `<length>`              |  `30px`    |                      |
-| width           |    `<length>`              |  `30px`    |                      |
-| margin          |    `<length>`              |  `10px`    |                      |
-| "font-size"     |    `<length>`              |  `20px`    |                      |
-| "border-radius" | `<length>`, `<percentage>` |  `2px`     |                      |
+| Key             | Value                        | Default    | Description & Notice |
+|      :---       |      :---:                   |   :---:    |         :---         |
+| color           | hex value                    |  `#ffffff` |                      |
+| background      | `rgb()`, `rgba()`, hex value |  `#757575` |                      |
+| height          |    `<length>`                |  `30px`    |                      |
+| width           |    `<length>`                |  `30px`    |                      |
+| margin          |    `<length>`                |  `10px`    |                      |
+| "font-size"     |    `<length>`                |  `20px`    |                      |
+| "border-radius" | `<length>`, `<percentage>`   |  `2px`     |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | |
  
-* `lBtnCpnt`
+* `lBtnCpnt` - accepts a regular React element, this let you can design your own button,see the example in [Deom]
+
 * `rBtnCpnt`
 
 * `sliderBoxStyle` - accepts an object.
@@ -155,7 +168,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 |      :---       |             :---:              |   :---:    |    :---              |
 | height          | 	`<length>`, `<percentage>` | `400px`    |                      |
 | width           | `<length>`, `<percentage>`     | `90%`      |                      |
-| background      | rgb(), rgba(), hex value       | `#EEEEEE`  |                      |
+| background      | `rgb()`, `rgba()`, hex value   | `#EEEEEE`  |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | | 
 
 * `itemsStyle` -
@@ -164,7 +177,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 |      :---       |        :---:                   |  :---:     |  :---                |
 | height          | `<length>`, `<percentage>`     | `400px`    |                      |
 | padding         | `<length>`, `<percentage>`     | `3px`      |                      |
-| background      | rgb(), rgba(), hex value       | `#EEEEEE`  |                      |
+| background      | `rgb()`, `rgba()`, hex value   | `#EEEEEE`  |                      |
 | margin          | `0px ?px`                      | `0px 40px` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
 
 * `textBoxStyle`
@@ -173,7 +186,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 |      :---       |             :---:              |   :---:                   |    :---              |
 | color           | hex value                      | `#ffffff`                 |                      |
 | padding         | `<length>`, `<percentage>`     | `10px`                    |                      |
-| background      | rgb(), rgba(), hex value       | `rgba(117, 117, 117, .6)` |                      |
+| background      | `rgb()`, `rgba()`, hex value   | `rgba(117, 117, 117, .6)` |                      |
 | "border-radius" | `<length>`, `<percentage>`     | `2px`                     |                      |
 | "text-align"    | `left \| right \| center`      | `center`                  |                      |
 | width           | `<length>`, `<percentage>`     | `75%`                     |                      |
