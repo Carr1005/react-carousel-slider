@@ -113,7 +113,7 @@ class App extends Component {
 ```
 ***
 * All props below are optional, they apply default setting if we don't specify ours.
-* The **Key** without prefixng a  ' * '  is pure css property, what filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
+* The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object.
 
@@ -165,7 +165,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | height | 	`<length>`, `<percentage>` | 400px |  |
 | padding | `<length>`, `<percentage>` | 3px | |
 | background | rgb(), rgba(), hex value | #EEEEEE | |
-| margin | in form of `0px ?px` | `0px 40px` | | 
+| margin | `0px ?px` | `0px 40px` | To decide the space between slides, only accept in form "0px ?px" now.| 
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
