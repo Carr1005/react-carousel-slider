@@ -165,7 +165,8 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 | height | 	`<length>`, `<percentage>` | 400px |  |
 | padding | `<length>`, `<percentage>` | 3px | |
 | background | rgb(), rgba(), hex value | #EEEEEE | |
-| margin | `0px ?px` | `0px 40px` | To decide the space between slides, only accept in form "0px ?px" now.| 
+| margin | `0px ?px` | `0px 40px` | To decide the space between slides, 
+only accept value in form "0px ?px" now.| 
 
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
