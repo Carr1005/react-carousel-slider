@@ -141,7 +141,7 @@ The **Key** without prefixng a  ' * '  is pure css property, what be filled in c
 
 ***
 
-* `buttonSetting` - accepts an object.
+* `buttonSetting` - accepts an object, we use `content: '\003c'`, `content: '\003e'` to present buttons now, you may want to design your own by utilizing  props [`lBtnCpnt` and `rBtnCpnt`](#BtnCpnts).
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
@@ -164,7 +164,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 ***
 
-* `lBtnCpnt`, `rBtnCpnt` - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
+* `lBtnCpnt`, `rBtnCpnt` <a id="BtnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
 
 ***
 
