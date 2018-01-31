@@ -111,24 +111,31 @@ class App extends Component {
     );
 ```
 ***
-
-The **Key** without prefixng a  ' * '  is pure css property, what we filled in column **Value** are just recommended because of
-anticipated purpose, feel free to try if things are under control.
+* All props below are optional, they apply default setting if we don't specify the value.
+* The **Key** without prefixng a  ' * '  is pure css property, what we filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object.
 
 | Key | Value | Default | Description & Notice |
-|:---|:---|:---|:---|
+|:---|:---:|:---:|:---|
 | * autoSliding | `{interval: "?s" }` | `false` |  |
 | * circular | `true \| false` | `true` | |
 | * duration | `"?s"` | `"0.5s"` | |
-| * flag | `true | false` | `false` | |
-| * button | `true | false` | `true` | |
+| * flag | `true \| false` | `false` | |
+| * button | `true \| false` | `true` | |
 
+* `buttonSetting` - accepts an 
+
+| Key | Value | Default | Description & Notice |
+|:---|:---:|:---:|:---|
+| * placeOn | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath` | `top-left` |  |
+| * hoverEvent | `true \| false` | `false` | |
+| * style | `{left: {}, right: {}}` | | |
+    
 * `sliderBoxStyle` - accepts an object.
 
 | Key | Value | Default | Description & Notice |
-|:---|:---|:---|:---|
+|:---|:---:|:---:|:---|
 | height | 	`<length>`, `<percentage>` | 400px |  |
 | width | `<length>`, `<percentage>` | 90% | |
 | background | rgb(), rgba(), hex value | #EEEEEE | |
