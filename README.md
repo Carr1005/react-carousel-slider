@@ -112,8 +112,8 @@ class App extends Component {
     );
 ```
 ***
-* All props below are optional, they apply default setting if we don't specify the value.
-* The **Key** without prefixng a  ' * '  is pure css property, what we filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
+* All props below are optional, they apply default setting if we don't specify ours.
+* The **Key** without prefixng a  ' * '  is pure css property, what filled in column **Value** are just recommended because of anticipated purpose, feel free to try if things are under control.
 
 * `manner` - accepts an object.
 
