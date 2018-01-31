@@ -161,7 +161,7 @@ Keys and Values in object that `buttonSetting.style.left` and `buttonSetting.sty
 * `itemsStyle` -
 
 | Key | Value | Default | Description & Notice |
-|:---|:---|:---|:---|
+|:---|:---|:-----|:---|
 | height | 	`<length>`, `<percentage>` | 400px |  |
 | padding | `<length>`, `<percentage>` | 3px | |
 | background | rgb(), rgba(), hex value | #EEEEEE | |
