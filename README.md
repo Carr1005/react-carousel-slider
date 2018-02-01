@@ -189,6 +189,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | padding         | `<length>` \| `<percentage>`       | `"3px"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
 | margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
+|minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of img is not working, maybe you</br>want to let your slide still have room.</br>See the usage in the [Demo]()|
 
 ***
 
