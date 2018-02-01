@@ -106,7 +106,7 @@ class App extends Component {
 * [`textBoxStyle`](#textBoxStyle)
 
 
-
+***
 
 * `slidesItems` <a id="slidesItems"></a> -  accepts an array of objects, specific structure and keys are required.
 ```js
