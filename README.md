@@ -93,7 +93,22 @@ class App extends Component {
 ```
 
 ## Allowable Props
-* `slidesItems` -  accepts an array of objects, specific structure and keys are required.
+
+
+* [`slidesItems`](#slidesItems)
+* [`slidesCpnts`](#slidesCpnts)
+* [`manner`](#manner)
+* [`buttonSetting`](#buttonSetting)
+* [`lBtnCpnt`](#btnCpnts)
+* [`rBtnCpnt`](#btnCpnts)
+* [`sliderBoxStyle`](#sliderBoxStyle)
+* [`itemsStyle`](#itemsStyle)
+* [`textBoxStyle`](#textBoxStyle)
+
+
+
+
+* `slidesItems` <a id="slidesItems"></a> -  accepts an array of objects, specific structure and keys are required.
 ```js
     [
         {
@@ -106,7 +121,7 @@ class App extends Component {
         }
     ]
 ```
-* `slidesCpnts` -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style](#textBoxStyle) for `<p>` block, override it by specifying your own with using inline-styles.
+* `slidesCpnts` <a id="slidesCpnts"></a> -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style](#textBoxStyle) for `<p>` block, override it by specifying your own with using inline-styles.
     
 ```jsx
     let textBoxStyle = {
@@ -127,11 +142,10 @@ class App extends Component {
 All props below are optional, default setting is applied if we don't specify ours.
 
 
-The **Key** without prefixng a  ' * '  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
+The **Key** without prefixng a  \*  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
-***
 
-* `manner` - accepts an object, defines how your carousel / slider performs animating.
+* `manner` <a id="manner"></a> - accepts an object, defines how your carousel / slider performs animating.
 
 | Key           | Value               | Default | Description & Notice |
 |:---           |      :---:          |:---:    |:---                  |
@@ -143,7 +157,7 @@ The **Key** without prefixng a  ' * '  is pure css property, what be filled in c
 
 ***
 
-* `buttonSetting` - accepts an object, we use `content: '\003c'`, `content: '\003e'` to present buttons now, you may want to design your own by utilizing  props [`lBtnCpnt` and `rBtnCpnt`](#BtnCpnts).
+* `buttonSetting` <a id="buttonSetting"></a> - accepts an object, we use `content: '\003c'`, `content: '\003e'` to present buttons now, you may want to design your own by utilizing  props [`lBtnCpnt` and `rBtnCpnt`](#btnCpnts).
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
@@ -166,11 +180,11 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 ***
 
-* `lBtnCpnt`, `rBtnCpnt` <a id="BtnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
+* `lBtnCpnt`, `rBtnCpnt` <a id="btnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
 
 ***
 
-* `sliderBoxStyle` - accepts an object.
+* `sliderBoxStyle` <a id="sliderBoxStyle"></a> - accepts an object.
 
 | Key             | Value                            | Default      | Description & Notice |
 |      :---       |             :---:                |   :---:      |    :---              |
@@ -181,7 +195,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 ***
 
-* `itemsStyle` - accepts an object.
+* `itemsStyle` <a id="itemsStyle"></a> - accepts an object.
 
 | Key             | Value                              | Default      | Description & Notice |
 |      :---       |        :---:                       |  :---:       |  :---                |
