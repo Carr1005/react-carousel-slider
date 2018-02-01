@@ -191,7 +191,6 @@ class CarouselSlider extends Component {
 
             this.loadedCnt += 1;
             this.imgsWidth[index] = targetItem.offsetWidth;
-            console.log(this.imgsWidth[index]);
 			
             if ( (!this.mannerSetting.circular && (index === 1)) || (this.mannerSetting.circular && this.slideCnt === 1)) {
                 this.initialSlideCon();
