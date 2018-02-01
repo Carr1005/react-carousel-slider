@@ -1,25 +1,89 @@
 {
-    "items": [
-    	{
-            "des": "1",
-            "imgSrc": "https://i.imgur.com/7nbAJ0C.jpg"
-        },
-        {
-            "des": "2",
-            "imgSrc": "https://i.imgur.com/pgCzueK.jpg"
-        },
-        {
-            "des": "3",
-            "imgSrc": "https://i.imgur.com/d5aiXJP.jpg"
-        },
-        {
-            "des": "4",
-            "imgSrc": "https://i.imgur.com/L75otV6.jpg"
-        },
-        {
-            "des": "5",
-            "imgSrc": "https://i.imgur.com/qkPMr9D.jpg"
-        }
+    "basic": {
+
+        "items": [
+            {
+                "des": "1",
+                "imgSrc": "https://i.imgur.com/7nbAJ0C.jpg"
+            },
+            {
+                "des": "2",
+                "imgSrc": "https://i.imgur.com/pgCzueK.jpg"
+            },
+            {
+                "des": "3",
+                "imgSrc": "https://i.imgur.com/d5aiXJP.jpg"
+            },
+            {
+                "des": "4",
+                "imgSrc": "https://i.imgur.com/L75otV6.jpg"
+            },
+            {
+                "des": "5",
+                "imgSrc": "https://i.imgur.com/qkPMr9D.jpg"
+            }
         
-    ] 
+        ] 
+    },
+
+    "customSlideCpnt": {
+
+        "items": [
+            {
+                "imgSrc": "https://c.pxhere.com/photos/b5/40/architecture_skyscraper_glass_facades_modern_facade_sky_building_d_sseldorf-1184497.jpg!d",
+                "des1": "Black",
+                "des2": "White"
+            },
+            {
+                "imgSrc": "https://c.pxhere.com/photos/4a/92/architecture_skyscraper_glass_facades_modern_facade_sky_building_d_sseldorf-1289274.jpg!d",
+                "des1": "Black",
+                "des2": "White"
+            },
+            {
+                "imgSrc": "https://c.pxhere.com/photos/01/00/architecture_skyscraper_glass_facades_modern_facade_sky_building_d_sseldorf-1191017.jpg!d",
+                "des1": "Black",
+                "des2": "White"
+            }
+        
+        ] 
+    },
+
+    "autoSliding": {
+        "items": [
+            {
+                "imgSrc": "https://c.pxhere.com/photos/38/9a/rustic_vehicle_vintage_retro_throwback_old_school_old_transportation-872722.jpg!d"
+            },
+            {
+                "imgSrc": "https://c.pxhere.com/photos/6b/fc/rusty_car_broken_car_abandoned_car_automobile_aged_old_american_car_cuba-815042.jpg!d"
+            },
+            {
+                "imgSrc": "https://c.pxhere.com/photos/c5/03/photo-92087.jpg!d"
+            },
+            {
+                "imgSrc": "https://c1.staticflickr.com/1/8/6340882_46a6a534b3_b.jpg"
+            }
+        ]
+    },
+
+    "buttonsUsage": {
+
+        "items": [
+            {
+                "imgSrc": "",
+                "buttonLabel": "button1"
+            },
+            {
+                "imgSrc": "",
+                "buttonLabel": "button2"
+            },
+            {
+                "imgSrc": "",
+                "buttonLabel": "button3"
+            },
+            {
+                "imgSrc": "",
+                "buttonLabel": "button4"
+            }
+        ]
+    }
 }

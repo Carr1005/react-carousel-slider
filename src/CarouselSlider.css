@@ -21,6 +21,7 @@
 	display: flex;
  	align-items: center;
 	width: auto;
+	/*height: 80%;*/
 }
 
 .flag {
@@ -38,6 +39,7 @@
 	height: 90%;
 	position: relative;
 	border-radius: 2px;
+	/*width: 100px;*/
 	
 }
 

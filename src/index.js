@@ -47,7 +47,9 @@ class CarouselSlider extends Component {
             padding: "3px",
             background: "#FAFAFA",
             margin: "0px 40px"
+            // ,minWidth: "100px" 
         };
+
 
         this.buttonManner = {
             hoverEvent: false
@@ -63,8 +65,8 @@ class CarouselSlider extends Component {
             height: "30px",
             width: "30px",
             margin: "10px",
-            "font-size": "20px",
-            "borderRadius": "2px",
+            fontSize: "20px",
+            borderRadius: "2px",
             border: "none"
         }
         
@@ -97,6 +99,7 @@ class CarouselSlider extends Component {
         };
 
         this.imgLoaded = this.imgLoaded.bind(this);
+        this.nonImgLoaded = this.nonImgLoaded.bind(this);
 		this.slideItemHandler = this.slideItemHandler.bind(this);
 		this.initialSlideCon =  this.initialSlideCon.bind(this);
 		this.calMovement = this.calMovement.bind(this);
@@ -166,8 +169,6 @@ class CarouselSlider extends Component {
             }
         }
         this.slidingManner.slideOrders[2] = former.concat(latter);
-
-        console.log(this.slidingManner.slideOrders);
     }
     
     mobileDetect() {
@@ -177,6 +178,31 @@ class CarouselSlider extends Component {
             return false;
         }   
     }
+    
+	nonImgLoaded(index) {
+		let refIndex = 'ref'+index ;
+		if (this.refs[refIndex]) {            
+            let customStyle = this.setItemsStyle();
+			let targetItem = this.refs[refIndex];
+ 
+            for (let key in customStyle) {
+                targetItem.style[key] = customStyle[key];
+            }
+
+            this.loadedCnt += 1;
+            this.imgsWidth[index] = targetItem.offsetWidth;
+            console.log(this.imgsWidth[index]);
+			
+            if ( (!this.mannerSetting.circular && (index === 1)) || (this.mannerSetting.circular && this.slideCnt === 1)) {
+                this.initialSlideCon();
+			}
+
+            if (this.mannerSetting.circular && (this.loadedCnt === this.slideCnt * 3)) {
+                this.initialSlideCon();
+            }            
+		}
+
+	}
 
 	imgLoaded(index) {
         let refIndex = 'ref'+index ;
@@ -212,17 +238,19 @@ class CarouselSlider extends Component {
     slideItemHandler(slideEl, index) {
         switch (this.slideType) {
             case 'prop':
-                let imgElement = slideEl.imgSrc ? (<img src = {slideEl.imgSrc} ></img>) : (<img></img>);
+                let imgElement = slideEl.imgSrc ? (<img src = {slideEl.imgSrc} ></img>) : (<img src = {slideEl.imgSrc} ></img>);
                 let desElement = slideEl.des ? (<p style = {this.setTextBoxStyle()} >{slideEl.des}</p>) : null;
+
                 return (
-                    <div className = 'itemWrapper' style = {{order: index}} onLoad = {() => this.imgLoaded(index)} onClick = {this.handleBubbling} ref = {'ref'+index} key = {'ref'+index}>
+                    <div className = 'itemWrapper' style = {{order: index}} onError = {() => this.nonImgLoaded(index)} onLoad = {() => this.imgLoaded(index)} onClick = {this.handleBubbling} ref = {'ref'+index} key = {'ref'+index}>
                         {imgElement}
                         {desElement}
                     </div>
-                );
+            	);
+
             break;
             case 'cpnt':
-                return (<div className = 'itemWrapper' style = {{order: index}} onLoad = {() => this.imgLoaded(index)} onClick = {this.handleBubbling} ref = {"ref"+index} key = {"ref"+index} >{slideEl}</div>);
+                return (<div className = 'itemWrapper' style = {{order: index}} onError = {() => this.nonImgLoaded(index)} onLoad = {() => this.imgLoaded(index)} onClick = {this.handleBubbling} ref = {"ref"+index} key = {"ref"+index} >{slideEl}</div>);
             break;
         }
 	}
@@ -280,7 +308,6 @@ class CarouselSlider extends Component {
 	}
 
     itemsReorder() {
-    	console.log(this.slidingManner.cycle);
         for (let i = 0; i < this.slideCnt * 3; i++) {
             if (i  < this.slideCnt) {
                 this.refs['ref' + (i - this.slideCnt)].style.order = this.slidingManner.slideOrders[this.slidingManner.cycle][i];
@@ -288,8 +315,6 @@ class CarouselSlider extends Component {
                 this.refs['ref' + (i - this.slideCnt + 1)].style.order = this.slidingManner.slideOrders[this.slidingManner.cycle][i];
             }                
         }
-        
-        console.log(this.slidingManner.slideOrders[this.slidingManner.cycle]);
     }
 
     movementReset(direction) {
@@ -415,7 +440,7 @@ class CarouselSlider extends Component {
 
     setItemsStyle() {
         if (this.props.itemsStyle) {
-            let cloneStyle = this.props.itemsStyle;
+            let cloneStyle = JSON.parse(JSON.stringify(this.props.itemsStyle));
             delete cloneStyle.height; /* height for slideCon */
             return Object.assign({}, this.defaultItemsStyle, cloneStyle);
         } else {
@@ -425,9 +450,9 @@ class CarouselSlider extends Component {
     
     setSlideConHeight() {
         if (this.props.itemsStyle) {
-            return this.props.itemsStyle.height ? this.props.itemsStyle.height : this.defaultSlideConStyle.height;
+            return this.props.itemsStyle.height ? {height: this.props.itemsStyle.height} : {height: this.defaultSlideConStyle.height};
         } else {
-            return this.defaultSlideConStyle.height;
+            return {height: this.defaultSlideConStyle.height};
         }
     }
 
@@ -553,6 +578,7 @@ class CarouselSlider extends Component {
         }
     }
 
+
 	render() {
 		let renderSlideItems, items, sflag, eflag, slideCon, buttons, leftButton, rightButton, lButtonIcon, rButtonIcon, buttonSetting;
         
@@ -585,11 +611,11 @@ class CarouselSlider extends Component {
             } else {
 
                 if (this.mannerSetting.flag) {
-                    sflag = (<div className = 'flag' ref = 'sflag' style = {{order: 0}} ></div>) 
-                    eflag = (<div className = 'flag' ref = 'eflag' style = {{order: this.slideCnt + 1}} ></div>); 
+                    sflag = (<div className = 'flag' ref = 'sflag' style = {{order: 0}} key = {'sflag'} ></div>) 
+                    eflag = (<div className = 'flag' ref = 'eflag' style = {{order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
                 } else {
-                    sflag = (<div className = 'flag' ref = 'sflag' style = {{background: "transparent", order: 0}} ></div>) 
-                    eflag = (<div className = 'flag' ref = 'eflag' style = {{background: "transparent", order: this.slideCnt + 1}} ></div>); 
+                    sflag = (<div className = 'flag' ref = 'sflag' style = {{background: "transparent", order: 0}} key = {'sflag'} ></div>) 
+                    eflag = (<div className = 'flag' ref = 'eflag' style = {{background: "transparent", order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
                 }
                 items = this.slideEls.map((slideEl, index) => this.slideItemHandler(slideEl, index + 1));
                 items.unshift(sflag);
@@ -599,12 +625,12 @@ class CarouselSlider extends Component {
 
             /*Use margin to tune the button position*/
             slideCon = this.mobileDetect() ? (<div className = "slideCon" ref = "slideCon" 
-                style = {{height: this.setSlideConHeight()}} 
+                style = {this.setSlideConHeight()} 
                 onTouchStart = {e => this.handleTouchStart(e)}
                 onTouchMove = {e => this.handleTouchMove(e)}
                 onTouchEnd = {e => this.handleTouchEnd(e)} >
                     {items}
-            </div>) : (<div className = 'slideCon' ref = 'slideCon' style = {{height: this.setSlideConHeight()}} >
+            </div>) : (<div className = 'slideCon' ref = 'slideCon' style = {this.setSlideConHeight()} >
                 {items}
             </div>);
     
