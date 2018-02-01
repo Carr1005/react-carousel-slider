@@ -144,7 +144,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
     );
 ```
 
-## Allowable Props - Optional
+#### Allowable Props - Optional
 
 * `manner` <a id="manner"></a> - accepts an object, defines how your carousel / slider performs animating.
 
