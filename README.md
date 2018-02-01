@@ -160,8 +160,8 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | height          |    `<length>`                    |  `"30px"`    |                      |
 | width           |    `<length>`                    |  `"30px"`    |                      |
 | margin          |    `<length>`                    |  `"10px"`    |                      |
-| "font-size"     |    `<length>`                    |  `"20px"`    |                      |
-| "border-radius" | `<length>` \| `<percentage>`     |  `"2px"`     |                      |
+| fontSize        |    `<length>`                    |  `"20px"`    |                      |
+| borderRadius    | `<length>` \| `<percentage>`     |  `"2px"`     |                      |
 | border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `"none"` | |
 
 ***
