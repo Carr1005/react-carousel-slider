@@ -97,6 +97,11 @@ class App extends Component {
 
 * [`slidesItems`](#slidesItems)
 * [`slidesCpnts`](#slidesCpnts)
+
+All props below are optional, default setting is applied if we don't specify ours.
+
+The **Key** without prefixng a  \*  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
+
 * [`manner`](#manner)
 * [`buttonSetting`](#buttonSetting)
 * [`lBtnCpnt`](#btnCpnts)
@@ -138,12 +143,8 @@ class App extends Component {
         </div>
     );
 ```
-***
-All props below are optional, default setting is applied if we don't specify ours.
 
-
-The **Key** without prefixng a  \*  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
-
+## Allowable Props - Optional
 
 * `manner` <a id="manner"></a> - accepts an object, defines how your carousel / slider performs animating.
 
