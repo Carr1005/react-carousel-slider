@@ -23,6 +23,9 @@ The UMD build:
 ```html 
 <script src="https://unpkg.com/react-carousel-slider/umd/react-carousel-slider.js"></script>
 ```
+## Demo & Examples
+
+ [carr1005.github.io/react-carousel-slider/index.html](http://carr1005.github.io/react-carousel-slider/index.html)
 
 ## Usage
 
@@ -181,7 +184,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 ***
 
-* `lBtnCpnt`, `rBtnCpnt` <a id="btnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo]().
+* `lBtnCpnt`, `rBtnCpnt` <a id="btnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickUsage).
 
 ***
 
@@ -204,7 +207,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | padding         | `<length>` \| `<percentage>`       | `"3px"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
 | margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
-|minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of img is not working, maybe you</br>want to let your slide still have room.</br>See the usage in the [Demo]().|
+|minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of image is not provided, and maybe</br>you want to let your slide still have room.</br>See more explaination in the [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickUsage).|
 
 ***
 

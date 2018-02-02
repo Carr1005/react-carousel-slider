@@ -70,19 +70,23 @@
         "items": [
             {
                 "imgSrc": "",
-                "buttonLabel": "button1"
+                "buttonLabel": "button1",
+                "color": "rgb(149,117,205)"
             },
             {
                 "imgSrc": "",
-                "buttonLabel": "button2"
+                "buttonLabel": "button2",
+                "color": "rgb(121,134,203)"
             },
             {
                 "imgSrc": "",
-                "buttonLabel": "button3"
+                "buttonLabel": "button3",
+                "color": "rgb(239,83,80)"
             },
             {
                 "imgSrc": "",
-                "buttonLabel": "button4"
+                "buttonLabel": "button4",
+                "color": "rgb(230,81,0)"
             }
         ]
     }
