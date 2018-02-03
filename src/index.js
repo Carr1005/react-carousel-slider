@@ -419,10 +419,12 @@ class CarouselSlider extends Component {
     handleTouchEnd(e) {
         if (this.touchEvent.touchStartX != e.changedTouches[0].clientX) {
             if (!this.slidingManner.sliding) {
-                if (this.touchEvent.touchMovement > 0) {
-                    this.moveSlide(-1);
-                } else {
-                    this.moveSlide(1);
+                if (Math.abs(this.touchEvent.touchMovement) > 25) {
+                    if (this.touchEvent.touchMovement > 0) {
+                        this.moveSlide(-1);
+                    } else {
+                        this.moveSlide(1);
+                    }
                 }
             }
             this.touchEvent.touchStartX = 0;
@@ -451,7 +453,7 @@ class CarouselSlider extends Component {
             return JSON.parse(JSON.stringify(this.defaultItemsStyle));
         }
     }
-    
+    "white-space": "pre-wrap"
     setSlideConHeight() {
         if (this.props.itemsStyle) {
             return this.props.itemsStyle.height ? {height: this.props.itemsStyle.height} : {height: this.defaultSlideConStyle.height};

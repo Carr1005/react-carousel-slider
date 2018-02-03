@@ -16,15 +16,12 @@ local image
 
 */
 
-
-
-
 class Demo extends Component {
     
     render() {
         
         let jsonData = require('./slidesExample.json');
-        let defaultDemo = <CarouselSlider slideItems = {jsonData.basic.items} sliderBoxStyle = {{height: "600px"}}/>;
+        let defaultDemo = <CarouselSlider slideItems = {jsonData.basic.items} />;
 
 
         let sliderBoxStyle = {
@@ -154,11 +151,13 @@ class Demo extends Component {
         }
         
         let preCodeStyle = {
+            "white-space": "pre-wrap"
             // display: "inline-block",
             // margin: "0 auto",
             // width: "50%"
         }
         let preJsonStyle = {
+            "white-space": "pre-wrap"
             // display: "inline-block",
             // margin: "0 auto",
             // width: "50%"
