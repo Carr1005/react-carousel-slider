@@ -203,7 +203,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 | Key             | Value                              | Default      | Description & Notice |
 |      :---       |        :---:                       |  :---:       |  :---                |
-| height          | `<length>` \| `<percentage>`       | `"400px"`    |                      |
+| height          | `<length>` \| `<percentage>`       | `"80%"`      |                      |
 | padding         | `<length>` \| `<percentage>`       | `"3px"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
 | margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |

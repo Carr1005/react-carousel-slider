@@ -43,13 +43,13 @@ class CarouselSlider extends Component {
             height: "80%"
         };
 
-        this.defaultItemsStyle = {
+        this.defaultItemsStyle = {         
             padding: "3px",
             background: "#FAFAFA",
             margin: "0px 40px"
+
             // ,minWidth: "100px" 
         };
-
 
         this.buttonManner = {
             hoverEvent: false
@@ -202,14 +202,21 @@ class CarouselSlider extends Component {
 
     imgLoaded(index) {
         let refIndex = 'ref'+index ;
-        if (this.refs[refIndex]) {            
+        if (this.refs[refIndex]) { 
+            
+            let ratio = 0;
+            let adjustWidth = 0;
+            let adjustHeight = 0;
             let customStyle = this.setItemsStyle();
             let targetItem = this.refs[refIndex];
-
+            
+            
             if (targetItem.offsetWidth >= this.refs.sliderBox.offsetWidth) {
-                let ratio = targetItem.offsetHeight / targetItem.offsetWidth;
-                let adjustWidth = (this.refs.sliderBox.offsetWidth - this.itemsMargin * 2);
-                let adjustHeight = adjustWidth * ratio;                
+                ratio = targetItem.offsetHeight / targetItem.offsetWidth;
+                // if (targetItem.offsetWidth > targetItem.offsetHeight) {
+                adjustWidth = (this.refs.sliderBox.offsetWidth - this.itemsMargin * 2);
+                adjustHeight = adjustWidth * ratio;
+                // }
                 customStyle.height = adjustHeight + 'px';
                 customStyle.width = adjustWidth + 'px';
             }
@@ -441,7 +448,7 @@ class CarouselSlider extends Component {
             delete cloneStyle.height; /* height for slideCon */
             return Object.assign({}, this.defaultItemsStyle, cloneStyle);
         } else {
-            return this.defaultItemsStyle;
+            return JSON.parse(JSON.stringify(this.defaultItemsStyle));
         }
     }
     

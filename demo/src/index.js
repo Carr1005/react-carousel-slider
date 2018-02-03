@@ -24,7 +24,7 @@ class Demo extends Component {
     render() {
         
         let jsonData = require('./slidesExample.json');
-        let defaultDemo = <CarouselSlider slideItems = {jsonData.basic.items} />;
+        let defaultDemo = <CarouselSlider slideItems = {jsonData.basic.items} sliderBoxStyle = {{height: "600px"}}/>;
 
 
         let sliderBoxStyle = {
@@ -125,7 +125,8 @@ class Demo extends Component {
             padding: "0px",
             background: "transparent",
             margin:"0 20px",
-            
+            border: "none",
+
             minWidth: "100px" 
         };
 

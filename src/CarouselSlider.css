@@ -28,19 +28,19 @@
 
 .flag {
 	
-	height: 90%;
+	height: 100%;
 	background-color: rgba(91, 97, 107, 0.5);
 	flex: 1 0;
-	/*width:100%;*/
     margin: 0px;
 
 }
 
 .slideCon .itemWrapper {
 	display: block;
-	height: 90%;
+	height: 100%;
 	position: relative;
 	border-radius: 2px;
+	width: auto;
 	/*width: 100px;*/
 	
 }
