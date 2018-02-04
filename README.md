@@ -33,7 +33,7 @@ This component would register touch events automatically when mobile device view
 
 ## Usage
 
-We could render a <CarouselSlider> component with the `slideItems` prop which accepts an array of objects with the specific simple sturcture and keys in default style. If the slider doesn't show the image when you are testing with local images, make sure if you have do it in [right way](#loadingLocalImage).
+We could render a <CarouselSlider> component with the `slideItems` prop which accepts an array of objects with the specific simple sturcture and keys in default style. If the slider doesn't show the image when you are testing with local images, make sure if you do it in the [right way](#loadingLocalImage).
 
 ```jsx
 
