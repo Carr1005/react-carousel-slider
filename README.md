@@ -289,7 +289,8 @@ The images certainly won't be rendered. This is not caused by the practice in ou
 
 ```
 Neither of image elements above can load and render the image succesfully.  
-Here are some points that we need to konw:
+
+Here are some points that we need to know:
 
 * Webpack needs to know what files to bundle at compile time, but dynamic image path in expression would only know in runtime.
 
@@ -321,6 +322,9 @@ let data = [
     
     return <CarouselSlider slideItems = {data} />;
 ```
+## License
+
+MIT Licensed. Copyright (c) Carr.W 2018.
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-carousel-slider
