@@ -84,8 +84,13 @@ class Demo extends Component {
 
         let manner = {
             autoSliding: {interval: "3s"},
-            duration: "2s"
+            duration: "2s"      
         };
+
+        if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
+            manner.button = false;
+        }
+
         let buttonSetting2 = {
             placeOn: "middle-inside",
             hoverEvent: true,
@@ -117,6 +122,18 @@ class Demo extends Component {
             </Link>
         );
 
+        let buttonSetting3 = {
+            placeOn: "middle-outside",
+            style: { 
+                left: {
+                    background: "rgba(111, 111, 111, 0.8)",
+                },
+                right: {
+                    background: "rgba(111, 111, 111, 0.8)",
+                }
+            }
+        };
+
         let itemsStyle2 = {
             height: "auto",
             padding: "0px",
@@ -136,7 +153,7 @@ class Demo extends Component {
         let rBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_forward</i>);
         let lBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_back</i>);
         
-        let buttonsUsage = (<Router><CarouselSlider slideCpnts = {buttons} manner = {{circular: false}} sliderBoxStyle = {{width: "80%", background: "transparent"}} buttonSetting = {{placeOn: "middle-outside"}} rBtnCpnt = {rBtnCpnt} lBtnCpnt = {lBtnCpnt} itemsStyle = {itemsStyle2} /></Router>);
+        let buttonsUsage = (<Router><CarouselSlider slideCpnts = {buttons} manner = {{circular: false}} sliderBoxStyle = {{width: "80%", background: "transparent"}} buttonSetting = {buttonSetting3} rBtnCpnt = {rBtnCpnt} lBtnCpnt = {lBtnCpnt} itemsStyle = {itemsStyle2} /></Router>);
         
         
         let separaterStyle = {
@@ -151,12 +168,14 @@ class Demo extends Component {
         }
         
         let preCodeStyle = {
+            width: "100%",
             "white-space": "pre-wrap"
             // display: "inline-block",
             // margin: "0 auto",
             // width: "50%"
         }
         let preJsonStyle = {
+            width: "100%",
             "white-space": "pre-wrap"
             // display: "inline-block",
             // margin: "0 auto",
@@ -191,7 +210,7 @@ class Demo extends Component {
                 <h1 style = {titleStyle} >React Carousel Slider</h1>
                 
                 <div id = "basic" style = {{height: "auto", padding: "50px 0px"}} >
-                    <h2 style = {titleStyle} >Basic - with default style</h2>
+                    <h2 style = {titleStyle} >Basic</h2>
                     <p style = {desStyle} >
                         This example shows that we could just give an array of objects, let componet render with its default style.
                         When we are uing <code>prop - slideItems</code>, particular name of key is required :
@@ -371,7 +390,9 @@ class Demo extends Component {
                         <li style = {slistStyle} > - How properties <code>autoSliding</code> and <code>duration</code> in <code>prop - manner</code> work.</li>
                         <li style = {slistStyle} > - How property <code>hoverEvent</code> in <code>prop - buttonSetting</code> works.</li>
                         <li style = {slistStyle} > - Touch events are supported for mobile device veiwport.</li>
-                        <li style = {slistStyle} > - In the carousel below, the buttons for navigating are visible only while cursour is hovering, so it won't show if we are using mobile device, but the touch events would be registered when the situation is detected in our component. Try by using web devTool or your mobile device.</li>
+                        <li style = {slistStyle} > - In the carousel below, the buttons for navigating are visible only while cursour is hovering,
+                         so it won't function normally if we are using mobile device, but the touch events would be registered when the situation 
+                         is detected in our component. Try by using web devTool or your mobile device.</li>
                     </ul>
                     {autoSliding}
                 </div>
@@ -406,6 +427,10 @@ class Demo extends Component {
                                 duration: "2s"
                             };
 
+                            if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
+                                manner.button = false;
+                            }
+
                             let buttonSetting = {
                                 placeOn: "middle-inside",
                                 hoverEvent: true,
@@ -437,8 +462,8 @@ class Demo extends Component {
 
                 <div className = "separater" style = {separaterStyle} ></div>
 
-                <div id = "trickUsage" style = {{height: "auto", padding: "50px 0px"}} >
-                    <h2 style = {titleStyle} >Trick Usage</h2>
+                <div id = "trickyUsage" style = {{height: "auto", padding: "50px 0px"}} >
+                    <h2 style = {titleStyle} >Tricky Usage</h2>
                     <p style = {desStyle} >
                         This example shows how we use props <code>lBtnCpnt</code> and <code>rBtnCpnt</code> with <a href = "https://google.github.io/material-design-icons/">Material Icons</a> to have beauties.
                         Also we could have more creative utilization by using this React component.
@@ -529,6 +554,18 @@ class Demo extends Component {
                                 minWidth: "100px"  
                             };
                             
+                            let buttonSetting = {
+                                placeOn: "middle-outside",
+                                style: {     /* Cause that we are passing custom button components, properties here won't be applied.*/
+                                    left: {
+                                        background: "rgba(111, 111, 111, 0.8)",
+                                    },
+                                    right: {
+                                        background: "rgba(111, 111, 111, 0.8)",
+                                    }
+                                }
+                            };
+
                             /* We use property 'minWidth' to give the button-like slides width space here. In common usage,
                              this css property should not be used, because of the mechanism of this component behind. It let 
                              image fit the height of the slider box first then decide the width value of the slide Item, but 
@@ -540,7 +577,7 @@ class Demo extends Component {
                                         <CarouselSlider slideCpnts = {buttons} 
                                             manner = {{circular: false}} 
                                             sliderBoxStyle = {{width: "80%", background: "transparent"}} 
-                                            buttonSetting = {{placeOn: "middle-outside"}} 
+                                            buttonSetting = {buttonSetting} 
                                             rBtnCpnt = {rBtnCpnt} 
                                             lBtnCpnt = {lBtnCpnt} 
                                             itemsStyle = {itemsStyle} />

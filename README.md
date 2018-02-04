@@ -27,9 +27,13 @@ The UMD build:
 
  [carr1005.github.io/react-carousel-slider/index.html](http://carr1005.github.io/react-carousel-slider/index.html)
 
+## Mobile Compatible
+
+This component would register touch events automatically when mobile device viewport is detected.
+
 ## Usage
 
-We could render a <CarouselSlider> component with the `slideItems` prop which accepts an array of objects with the specific simple sturcture and keys in default style.
+We could render a <CarouselSlider> component with the `slideItems` prop which accepts an array of objects with the specific simple sturcture and keys in default style. If the slider doesn't show the image when you are testing with local images, make sure if you have do it in [right way](#loadingLocalImage).
 
 ```jsx
 
@@ -184,7 +188,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 
 ***
 
-* `lBtnCpnt`, `rBtnCpnt` <a id="btnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored, see the example in [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickUsage).
+* `lBtnCpnt`, `rBtnCpnt` <a id="btnCpnts"></a> - Both accepts a regular React element. Use these props to give our own designed button, `style` property in `buttonSetting` would be ignored. See the example in [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickyUsage).
 
 ***
 
@@ -207,7 +211,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | padding         | `<length>` \| `<percentage>`       | `"3px"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
 | margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
-|minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of image is not provided, and maybe</br>you want to let your slide still have room.</br>See more explaination in the [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickUsage).|
+|minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of image is not provided, and maybe</br>you want to let your slide still have room.</br>See more explaination in the [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickyUsage).|
 
 ***
 
@@ -223,6 +227,100 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | width           | `<length>` \| `<percentage>`     | `"75%"`                     |                      |
 | top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering.|
 
+## Additional Know How - Loading Local Images <a id="loadingLocalImage"></a>
+
+While testing this component with local images, some problems may appear because we are just new to develop in React with webpack.
+
+If we have a directory structure like:
+
+```
+- app
+    |___ demo
+    |      |___ images
+    |      |        |___ yourImage1.jpg
+    |      |        |___ yourImage2.jpg
+    |      |
+    |      |___index.js
+    |
+    |
+    |___ src
+    | 
+    ...
+```
+
+In `/app/demo/index.js`, provide image sources with relative paths such as:
+
+```jsx
+    let data = [
+        {
+            des: "1",
+            imgSrc: "./images/yourImage1.jpg"
+        },
+        {
+            des: "2",
+            imgSrc: "./images/yourImage2.jpg"
+        }
+    ];
+
+    return <CarouselSlider slideItems = {data} />;
+```
+
+The images certainly won't be rendered. This is not caused by the practice in our component, it caused by the bundling mechanism that webpack works. We could have more tests:
+
+```jsx
+
+    let data = [
+        {
+            des: "1",
+            imgSrc: "./images/yourImage1.jpg"
+        },
+        {
+            des: "2",
+            imgSrc: "./images/yourImage2.jpg"
+        }
+    ];
+    
+    let imgOne = (<img src = {data[0].imgSrc}></img>);
+    let imgTwo = (<img src = {require(data[0].imgSrc)}></img>);
+    return (<div>
+        {imgOne}
+        {imgTwo}
+    </div>);
+
+```
+Neither of image elements above can load and render the image succesfully.  
+Here are some points that we need to konw:
+
+* Webpack needs to know what files to bundle at compile time, but dynamic image path in expression would only know in runtime.
+
+* In fact, there is a tricky way that gives concatenated string containing expression to `require()` to include the images for bundling. But to properly render the images, it still need to do something on `loaders` in `webpack.config.js`. We are not going this way in this component behind.
+
+* To get the proper image sources from local and pass to our carousel slider component, here is a good way with [reqiure.context](https://webpack.js.org/guides/dependency-management/#require-context):
+
+```jsx
+/* In the directory structure we assume above*/
+
+let data = [
+        {
+            des: "1",
+            imgSrc: "yourImage1.jpg"
+        },
+        {
+            des: "2",
+            imgSrc: "yourImage2.jpg"
+        }
+    ];
+    
+    let assetsPath = require.context('./images', false, /\.(png|jpe?g|svg)$/);
+    
+    // Substituting the imgSrc from file name in ./images to their corresponding path after they are bundled.
+    data.map((item, index) => {
+        // console.log(assetsPath.keys(), assetsPath.id);
+        item.imgSrc = assetsPath('./' + item.imgSrc);
+    });
+    
+    return <CarouselSlider slideItems = {data} />;
+```
     
 [npm-badge]: https://img.shields.io/npm/v/react-carousel-slider.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-carousel-slider

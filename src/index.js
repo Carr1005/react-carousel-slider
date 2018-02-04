@@ -640,36 +640,47 @@ class CarouselSlider extends Component {
                 {items}
             </div>);
     
-            if (buttonSetting.separate) {
-                if (buttonSetting.outOfBox) {
-                    renderSlideItems = (<div className = 'sliderSet' >
-                        {leftButton}
-                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+            if (this.mannerSetting.button) {
+                if (buttonSetting.separate) {
+                    if (buttonSetting.outOfBox) {
+                        renderSlideItems = (<div className = 'sliderSet' >
+                            {leftButton}
+                            <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                                {slideCon}
+                            </div>
+                            {rightButton}
+                        </div>);
+                    } else {
+                        renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                            {leftButton}
                             {slideCon}
-                        </div>
-                        {rightButton}
-                    </div>);
+                            {rightButton}
+                        </div>);
+                    }
                 } else {
-                    renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
-                        {leftButton}
-                        {slideCon}
-                        {rightButton}
-                    </div>);
+                    if (buttonSetting.outOfBox) {
+                        renderSlideItems = (<div>
+                            <div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
+                                {slideCon}
+                            </div>
+                            {buttons}
+                        </div>);
+                    } else {
+                        renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
+                            {buttons}
+                            {slideCon}
+                        </div>);
+                    }
                 }
+
             } else {
-                if (buttonSetting.outOfBox) {
-                    renderSlideItems = (<div>
-                        <div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
-                            {slideCon}
-                        </div>
-                        {buttons}
-                    </div>);
-                } else {
-                    renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
-                        {buttons}
+                
+                renderSlideItems = (<div className = 'sliderSet' >
+                    <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
                         {slideCon}
-                    </div>);
-                }
+                    </div>
+                </div>);
+
             }
         }
         return renderSlideItems;
