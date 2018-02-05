@@ -29,7 +29,7 @@ The UMD build:
 
 ## Mobile Compatible
 
-This component would register touch events automatically when mobile device viewport is detected.
+Touch events would be rigistered on this component automatically when mobile device viewport is detected.
 
 ## Usage
 
