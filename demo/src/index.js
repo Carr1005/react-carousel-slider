@@ -188,27 +188,56 @@ class Demo extends Component {
             fontWeight: "400"
         };
 
+        let seoTitleStyle = {
+
+            position: "absolute",
+            visibility: "hidden"
+        };
+
         let desStyle = {
             width: "60%",
             margin: "50px auto"
-        }
+        };
 
         let listStyle = {
             display: "block",
             width: "60%",
             margin: "0px auto",
             listStyleType: "none"
-        }
+        };
 
         let slistStyle = {
             marginTop: "5px",
             marginBottom: "15px" 
-        }
+        };
+
+        let githubLink = {
+            position: "sticky",
+            float: "right",
+            top: 0,
+            textAlign: "right",
+            color: "#fff",
+            fontWeight: "400",
+            fontSize: "18px",
+            display: "block",
+            zIndex: 2000000,
+            padding: "10px",
+            border: "2px",
+            background: "rgba(117, 117, 117, 0.5)",
+            textDecoration: "none"
+        };
 
         return (
+            
             <div style = {{background: "#fff", padding: "50px 0px", fontFamily: "Roboto,sans-serif"}} >
+                <a  style = {githubLink} href= "https://github.com/Carr1005/react-carousel-slider">Github</a>
                 <h1 style = {titleStyle} >React Carousel Slider</h1>
-                
+                <h1 style = {seoTitleStyle} >React Component Carosuel Slider</h1>
+                <h1 style = {seoTitleStyle} >Circular Carosuel</h1>
+                <h1 style = {seoTitleStyle} >Mobile Swipe</h1>
+                <h1 style = {seoTitleStyle} >React Component 幻燈片</h1>
+                <h1 style = {seoTitleStyle} >React Component スライド</h1>
+                <h1 style = {seoTitleStyle} >React Component 슬라이드</h1>
                 <div id = "basic" style = {{height: "auto", padding: "50px 0px"}} >
                     <h2 style = {titleStyle} >Basic</h2>
                     <p style = {desStyle} >
@@ -490,7 +519,7 @@ class Demo extends Component {
                         */
 
                         {
-                            "buttonsUsage": {
+                            "trickyUsage": {
 
                                 "items": [
                                     {
@@ -521,17 +550,13 @@ class Demo extends Component {
                     <pre style = {preCodeStyle}>{`
                         render() {
 
-                            let buttons = jsonData.buttonsUsage.items.map((item, index) => 
+                            let slides = jsonData.trickyUsage.items.map((item, index) => 
                                 <Link to = {'/' + item.buttonLabel} key = {index} >
                                     <img src = {item.imgSrc} ></img>
                                     <p style = {{top:"50%", background: item.color}} >{item.buttonLabel}</p>
                                 </Link>
                             );
 
-                            let btnStyle = {
-                                fontSize: "36px",
-                                background: "transparent"
-                            }
 
                             /*
                                 The easy way to integrate material-icons resource into your project is including the 
@@ -541,7 +566,12 @@ class Demo extends Component {
                                     @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
                             */
-                            
+
+                            let btnStyle = {
+                                fontSize: "36px",
+                                background: "transparent"
+                            }
+
                             let rBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_forward</i>);
                             let lBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_back</i>);
         

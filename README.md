@@ -3,6 +3,10 @@
 
 A React component that endeavors to provide flexbility for customizing carousel/slider.
 
+## Demo & Examples
+
+ [carr1005.github.io/react-carousel-slider/index.html](http://carr1005.github.io/react-carousel-slider/index.html)
+
 ## Installation
 
 Install it from npm.
@@ -23,10 +27,6 @@ The UMD build:
 ```html 
 <script src="https://unpkg.com/react-carousel-slider/umd/react-carousel-slider.js"></script>
 ```
-## Demo & Examples
-
- [carr1005.github.io/react-carousel-slider/index.html](http://carr1005.github.io/react-carousel-slider/index.html)
-
 ## Mobile Compatible
 
 Touch events would be rigistered on this component automatically when mobile device viewport is detected.
