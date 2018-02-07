@@ -224,13 +224,17 @@ class Demo extends Component {
             padding: "10px",
             border: "2px",
             background: "rgba(117, 117, 117, 0.5)",
-            textDecoration: "none"
+            textDecoration: "none",
         };
+        // 
 
         return (
             
-            <div style = {{background: "#fff", padding: "50px 0px", fontFamily: "Roboto,sans-serif"}} >
-                <a  style = {githubLink} href= "https://github.com/Carr1005/react-carousel-slider">Github</a>
+            <div style = {{background: "#fff", paddingBottom: "50px", fontFamily: "Roboto,sans-serif"}} >
+                <a  style = {githubLink} href= "https://github.com/Carr1005/react-carousel-slider">Github</a>     
+                <br></br>
+                <br></br>
+                <br></br>
                 <h1 style = {titleStyle} >React Carousel Slider</h1>
                 <h1 style = {seoTitleStyle} >React Component Carosuel Slider</h1>
                 <h1 style = {seoTitleStyle} >Circular Carosuel</h1>
