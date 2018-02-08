@@ -7,6 +7,9 @@ A React component that endeavors to provide flexbility for customizing carousel/
 
  [carr1005.github.io/react-carousel-slider/index.html](http://carr1005.github.io/react-carousel-slider/index.html)
 
+## Maybe have a quick try first:
+[![Edit l7qynnp41m](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/l7qynnp41m)
+
 ## Installation
 
 Install it from npm.
