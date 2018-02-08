@@ -17,6 +17,11 @@ class CarouselSlider extends Component {
             slideOrders:[[], [], []]
         }
 
+        this.dragEvent = {
+            startPoint:0,
+            deltaX: 0
+        }
+
         this.calculateSlidesOrder = this.calculateSlidesOrder.bind(this);
         this.itemsReorder = this.itemsReorder.bind(this);
         this.movementReset = this.movementReset.bind(this);
@@ -117,8 +122,50 @@ class CarouselSlider extends Component {
         this.allocateButtonSet = this.allocateButtonSet.bind(this);
         this.setLeftButtonStyle = this.setLeftButtonStyle.bind(this);
         this.setHoverEvent = this.setHoverEvent.bind(this);
+        
+        this.handleDragStart = this.handleDragStart.bind(this);
+        this.handleDrag = this.handleDrag.bind(this);
+        this.handleDragStop = this.handleDragStop.bind(this);
+
 
         this.calculateSlidesOrder();
+    }
+
+    handleDragStart(e) {
+        this.dragEvent.startPoint = e.clientX;
+        console.log('dragStart');
+    }
+
+
+    handleDrag(e) {
+        console.log(e.clientX);
+        // console.log(e.currentTarget);
+        // console.log(this.slidingManner.movement + (e.clientX - this.dragEvent.startPoint));
+        this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
+        console.log(this.dragEvent.deltaX);
+        // let dragMovement = (e.clientX > this.dragEvent.startPoint) ? (this.slidingManner.movement - this.dragEvent.deltaX) : (this.slidingManner.movement + this.dragEvent.deltaX) ;
+        let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
+        e.currentTarget.style.transform = "translateX(-" + dragMovement + "px)";
+        console.log(e.currentTarget.style.transform );
+        // this.refs.slideCon.style.transform = "translateX(- " + e.clientX + ")";
+    }
+
+    handleDragStop(e) {
+        
+        let direction = (this.dragEvent.deltaX > 0) ? 1 : -1;
+        console.log(this.dragEvent.deltaX);
+        console.log(direction);
+
+        let singleMovement = this.calMovement(direction);
+
+        if (Math.abs(this.dragEvent.deltaX) > singleMovement) {
+            if (!this.slidingManner.sliding) {
+                this.moveSlide(direction);
+            }
+        } else {
+            e.currentTarget.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
+            e.currentTarget.style.transform = "translateX(-" + this.slidingManner.movement + "px)";
+        }
     }
 
     componentWillUnmount() {
@@ -261,7 +308,7 @@ class CarouselSlider extends Component {
     initialSlideCon() {
         let slideCon = this.refs.slideCon;     
         slideCon.addEventListener('transitionend', () => {this.slidingManner.sliding = false});
-        
+
         if (this.mannerSetting.circular && this.slideCnt !== 1) {
             let sum = 0;
             for (let i = 1; i < this.slideCnt + 1; i++) {
@@ -277,6 +324,8 @@ class CarouselSlider extends Component {
             slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
             this.slidingManner.initialMovement = (this.refs.sliderBox.offsetWidth - this.imgsWidth[1]) / 2 + this.itemsMargin + this.imgsWidth[1];
         }
+
+        // slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
 
         slideCon.style.transform = 'translateX(-' + this.slidingManner.initialMovement + 'px)';
         this.slidingManner.movement = this.slidingManner.movement + this.slidingManner.initialMovement;
@@ -636,7 +685,7 @@ class CarouselSlider extends Component {
                 onTouchMove = {e => this.handleTouchMove(e)}
                 onTouchEnd = {e => this.handleTouchEnd(e)} >
                     {items}
-            </div>) : (<div className = 'slideCon' ref = 'slideCon' style = {this.setSlideConHeight()} >
+            </div>) : (<div className = 'slideCon' ref = 'slideCon' onDragStart = {e => this.handleDragStart(e)} onDrag = {e => this.handleDrag(e)} onDragEnd = {e => this.handleDragStop(e)} style = {this.setSlideConHeight()} >
                 {items}
             </div>);
     
