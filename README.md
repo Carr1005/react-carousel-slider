@@ -176,7 +176,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
-| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` | Only options in column **Value** are</br>available, fine-tune the position with `margin`</br>property in `style.left` / `style.right`.</br>Notice about option `middle-outside`:</br> * If your sliderBox width is narrow,</be>maybe you neet parent element like:</br>`<div style={{ width: "?px",`</br>`margin: "0 auto",`</br>`position: "relative" }}>`</br>`</div>`</br>to confine the `absolute` positioned button.|
+| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` | Only options in column **Value** are</br>available, fine-tune the position with `margin`</br>property in `style.left` / `style.right`.</br>Notice about option `middle-outside`:</br>* If your sliderBox width is narrow,</br>maybe you neet parent element like:</br>`<div style={{ width: "?px",`</br>`margin: "0 auto",`</br>`position: "relative" }}>`</br>`</div>`</br>to confine the `absolute` positioned button.</br>* This option would not function with</br>hoverEvent property below.|
 | * hoverEvent  | `true \| false`         | `false`      | Buttons are only visible when the</br>cursor hover on the slider. |
 | * style       | `{left: {}, right: {}}` |              |                      |
 
