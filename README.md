@@ -63,7 +63,7 @@ class App extends Component {
 ```
 Or give an array of your own regular React elements to `slideCpnts` prop, this lets our slide have availability to contain a clickable link. Even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
 
-#### Observe the address bar in CodeSandbox
+#### Click the slide and observe the address bar in CodeSandbox:
 
 [![Edit 5y7v8ppn0x](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/5y7v8ppn0x)
 
