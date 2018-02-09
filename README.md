@@ -63,6 +63,10 @@ class App extends Component {
 ```
 Or give an array of your own regular React elements to `slideCpnts` prop, this lets our slide have availability to contain a clickable link. Even cooperating with `<Link>` component of [React Router](https://github.com/ReactTraining/react-router) library for client side routing is possible.
 
+#### Playground
+
+[![Edit 5y7v8ppn0x](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/5y7v8ppn0x)
+
 ```jsx
 
 import React, {Component} from 'react'
@@ -172,7 +176,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
-| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` | Only options in column **Value** are</br>available, fine-tune the position with `margin`</br>property in `style.left` / `style.right`|
+| * placeOn     | `top-left`</br>`\| top-right`</br>`\| middle-inside`</br>`\| middle-outside`</br>`\| bottom-left`</br>`\| bottom-right`</br>`\| bottom-beneath`     | `"top-left"` | Only options in column **Value** are</br>available, fine-tune the position with `margin`</br>property in `style.left` / `style.right`.</br>Notice about option `middle-outside`:</br> * If your sliderBox width is narrow,</be>maybe you neet parent element like:</br>`<div style={{ width: "?px",`</br>`margin: "0 auto",`</br>`position: "relative" }}>`</br>`</div>`</br>to confine the `absolute` positioned button.|
 | * hoverEvent  | `true \| false`         | `false`      | Buttons are only visible when the</br>cursor hover on the slider. |
 | * style       | `{left: {}, right: {}}` |              |                      |
 
@@ -202,7 +206,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | height          | `<length>` \| `<percentage>`     | `"400px"`    |                      |
 | width           | `<length>` \| `<percentage>`     | `"90%"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value | `"#EEEEEE"`  |                      |
-| border          | [All border property](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | | 
+| border          | [All available properties](https://developer.mozilla.org/en-US/docs/Web/CSS/border) | `none` | | 
 
 ***
 
@@ -213,7 +217,7 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | height          | `<length>` \| `<percentage>`       | `"80%"`      |                      |
 | padding         | `<length>` \| `<percentage>`       | `"3px"`      |                      |
 | background      | `rgb()` \| `rgba()` \| hex value   | `"#EEEEEE"`  |                      |
-| margin          | `0px ?px`                          | `"0px 40px"` | To decide the space between slides</br>, only accept value in form `0px ?px` now. |
+| margin          | `0px ?px`                          | `"0px 40px"` | To give the space between slides</br>, only accept value in form `0px ?px` now. |
 |minWidth         | `<length>` \| `<percentage>`       | `100px`      | For the situation that the source</br>of image is not provided, and maybe</br>you want to let your slide still have room.</br>See more explaination in the [Demo](http://carr1005.github.io/react-carousel-slider/index.html#trickyUsage).|
 
 ***
@@ -229,6 +233,8 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | "text-align"    | `left \| right \| center`        | `"center"`                  |                      |
 | width           | `<length>` \| `<percentage>`     | `"75%"`                     |                      |
 | top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering.|
+| fontSize        | `<length>`                       |                             |                      |
+| fontWeight      | [All available properties](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight)|                             |                      |
 
 ## Additional Know How - Loading Local Images <a id="loadingLocalImage"></a>
 
