@@ -32,7 +32,7 @@ The UMD build:
 ```
 ## Mobile Compatible
 
-Touch events would be rigistered on this component automatically when mobile device viewport is detected.
+Touch events would be rigistered on this component automatically when mobile device viewport is detected, so the drag event is also available on mobile.
 
 ## Usage
 
