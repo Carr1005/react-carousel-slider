@@ -459,8 +459,9 @@ class Demo extends Component {
                                 autoSliding: {interval: "3s"},
                                 duration: "2s"
                             };
-
-                            if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
+                            
+                            let mobileRegx = /Mobi|Tablet|iPad|iPhone/;
+                            if (mobileRegx.test(navigator.userAgent)) {
                                 manner.button = false;
                             }
 
