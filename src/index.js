@@ -17,6 +17,18 @@ class CarouselSlider extends Component {
             slideOrders:[[], [], []]
         }
 
+        this.dragEvent = {
+            startPoint:0,
+            deltaX: 0,
+            thrershold: 0,
+            disableDragImage: (() => {
+                    let transparent = new Image();
+                    transparent.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+                    return transparent;
+                }
+            )()
+        }
+
         this.calculateSlidesOrder = this.calculateSlidesOrder.bind(this);
         this.itemsReorder = this.itemsReorder.bind(this);
         this.movementReset = this.movementReset.bind(this);
@@ -30,6 +42,7 @@ class CarouselSlider extends Component {
             flag: false,
             button: true
         };
+
         this.mannerSetting = this.handleMannerSetting();
 
         this.defaultSliderBoxStyle = {
@@ -93,7 +106,6 @@ class CarouselSlider extends Component {
         this.touchEvent = {
             touchMovement: 0,
             touchStartX: 0,
-            prevTouchX: 0,
             beingTouched: false
         };
 
@@ -109,6 +121,10 @@ class CarouselSlider extends Component {
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handleButtonClick  = this.handleButtonClick.bind(this);
 
+        this.handleDragStart = this.handleDragStart.bind(this);
+        this.handleDragStop = this.handleDragStop.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
+
         this.setSliderBoxStyles = this.setSliderBoxStyles.bind(this);
         this.setItemsStyle = this.setItemsStyle.bind(this);
         this.setSlideConHeight = this.setSlideConHeight.bind(this);
@@ -117,8 +133,12 @@ class CarouselSlider extends Component {
         this.allocateButtonSet = this.allocateButtonSet.bind(this);
         this.setLeftButtonStyle = this.setLeftButtonStyle.bind(this);
         this.setHoverEvent = this.setHoverEvent.bind(this);
-
+        
         this.calculateSlidesOrder();
+    }
+
+    componentDidMount() {
+        this.dragEvent.threshold = (this.refs.sliderBox.offsetWidth > 100) ? (this.refs.sliderBox.offsetWidth / 5) : 50;
     }
 
     componentWillUnmount() {
@@ -261,7 +281,7 @@ class CarouselSlider extends Component {
     initialSlideCon() {
         let slideCon = this.refs.slideCon;     
         slideCon.addEventListener('transitionend', () => {this.slidingManner.sliding = false});
-        
+
         if (this.mannerSetting.circular && this.slideCnt !== 1) {
             let sum = 0;
             for (let i = 1; i < this.slideCnt + 1; i++) {
@@ -278,6 +298,7 @@ class CarouselSlider extends Component {
             this.slidingManner.initialMovement = (this.refs.sliderBox.offsetWidth - this.imgsWidth[1]) / 2 + this.itemsMargin + this.imgsWidth[1];
         }
 
+        // slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
         slideCon.style.transform = 'translateX(-' + this.slidingManner.initialMovement + 'px)';
         this.slidingManner.movement = this.slidingManner.movement + this.slidingManner.initialMovement;
         this.autoSliding();
@@ -296,15 +317,22 @@ class CarouselSlider extends Component {
                 }, milliseconds);
             } else {
                 this.autoSlidingTimer = setInterval(() => {
-                    if (this.slidingManner.currentSlide === (this.slideCnt)) {
-                        this.slidingManner.direction = -1;
-                        this.moveSlide(this.slidingManner.direction);
-                    } else if (this.slidingManner.currentSlide === 1) {
-                        this.slidingManner.direction = 1;
-                        this.moveSlide(this.slidingManner.direction);
-                    } else {
-                        this.moveSlide(this.slidingManner.direction);
-                    }
+
+                        if (this.slidingManner.currentSlide === (this.slideCnt)) {
+                            if (!this.slidingManner.sliding) {
+                                this.slidingManner.direction = -1;
+                                this.moveSlide(this.slidingManner.direction);
+                            }
+                        } else if (this.slidingManner.currentSlide === 1) {
+                            if (!this.slidingManner.sliding) {
+                                this.slidingManner.direction = 1;
+                                this.moveSlide(this.slidingManner.direction);
+                            }
+                        } else {
+                            if (!this.slidingManner.sliding) {
+                                this.moveSlide(this.slidingManner.direction);
+                            }
+                        }
                     
                 }, milliseconds);
             }
@@ -379,6 +407,7 @@ class CarouselSlider extends Component {
 
             } else {
 
+                slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease'; // for after dragging
                 if (direction === 1 && (this.slidingManner.currentSlide < this.slideCnt)) {	
                     this.slidingManner.sliding = true;
                     singleMovement = this.calMovement(direction);
@@ -403,38 +432,73 @@ class CarouselSlider extends Component {
     }
 
     handleTouchStart(e) {
+        this.slidingManner.sliding = true;
         this.touchEvent.touchStartX = e.targetTouches[0].clientX;
         this.touchEvent.beingTouched = true;
     }
 
     handleTouchMove(e) {
+        this.slidingManner.sliding = true;
         if (this.touchEvent.beingTouched) {
-            let currentX = e.targetTouches[0].clientX
-            let deltaX = currentX - this.touchEvent.touchStartX;
-            this.touchEvent.touchMovement = deltaX;
-            this.touchEvent.prevTouchX = currentX;
+            this.touchEvent.touchMovement = this.touchEvent.touchStartX - e.targetTouches[0].clientX;         
+            let dragMovement = this.slidingManner.movement + this.touchEvent.touchMovement;
+            e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
         }
     }
 
     handleTouchEnd(e) {
-        if (this.touchEvent.touchStartX != e.changedTouches[0].clientX) {
+        this.slidingManner.sliding = false;
+
+        if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
             if (!this.slidingManner.sliding) {
-                if (Math.abs(this.touchEvent.touchMovement) > 25) {
-                    if (this.touchEvent.touchMovement > 0) {
-                        this.moveSlide(-1);
-                    } else {
-                        this.moveSlide(1);
-                    }
+                if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
+                    let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
+                    this.moveSlide(direction);
+                } else {
+                    e.currentTarget.style.transition = 'transform 0.5s ease';
+                    e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
                 }
             }
             this.touchEvent.touchStartX = 0;
-            this.touchEvent.beingTouched = true;
+            this.touchEvent.beingTouched = false;
         }
     }
 
     handleButtonClick(direction) {
         if (!this.slidingManner.sliding) {
             this.moveSlide(direction);
+        }
+    }
+
+    handleDragStart(e) {
+        
+        this.slidingManner.sliding = true;
+        e.currentTarget.style.transition = 'none';
+        this.dragEvent.startPoint = e.clientX;
+        e.dataTransfer.setDragImage(this.dragEvent.disableDragImage, 1, 1);
+
+    }
+
+    handleDragOver(e) {
+        this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
+        let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
+        e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
+        e.dataTransfer.dropEffect = 'none'; // To eliminate green add button on chrome.
+        e.dataTransfer.effectAllowed = 'none';
+        e.preventDefault();
+    }
+
+    handleDragStop(e) {
+        
+        let direction = (this.dragEvent.deltaX > 0) ? 1 : -1;
+        this.slidingManner.sliding = false;
+        if (Math.abs(this.dragEvent.deltaX) > this.dragEvent.threshold) {
+            if (!this.slidingManner.sliding) {
+                this.moveSlide(direction);
+            }
+        } else {
+            e.currentTarget.style.transition = 'transform 0.5s ease';
+            e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
         }
     }
 
@@ -453,7 +517,7 @@ class CarouselSlider extends Component {
             return JSON.parse(JSON.stringify(this.defaultItemsStyle));
         }
     }
-    "white-space": "pre-wrap"
+    
     setSlideConHeight() {
         if (this.props.itemsStyle) {
             return this.props.itemsStyle.height ? {height: this.props.itemsStyle.height} : {height: this.defaultSlideConStyle.height};
@@ -636,7 +700,11 @@ class CarouselSlider extends Component {
                 onTouchMove = {e => this.handleTouchMove(e)}
                 onTouchEnd = {e => this.handleTouchEnd(e)} >
                     {items}
-            </div>) : (<div className = 'slideCon' ref = 'slideCon' style = {this.setSlideConHeight()} >
+            </div>) : (<div className = 'slideCon' ref = 'slideCon' 
+                onDragStart = {e => this.handleDragStart(e)} 
+                onDragEnd = {e => this.handleDragStop(e)} 
+                onDragOver = {e => this.handleDragOver(e)}
+                style = {this.setSlideConHeight()} >
                 {items}
             </div>);
     
