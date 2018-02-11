@@ -138,7 +138,7 @@ class CarouselSlider extends Component {
     }
 
     componentDidMount() {
-        this.dragEvent.threshold = this.refs.sliderBox.offsetWidth / 5;
+        this.dragEvent.threshold = (this.refs.sliderBox.offsetWidth > 100) ? (this.refs.sliderBox.offsetWidth / 5) : 50;
     }
 
     componentWillUnmount() {
@@ -448,7 +448,8 @@ class CarouselSlider extends Component {
 
     handleTouchEnd(e) {
         this.slidingManner.sliding = false;
-        if (this.touchEvent.touchStartX != e.changedTouches[0].clientX) {
+
+        if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
             if (!this.slidingManner.sliding) {
                 if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
                     let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
@@ -478,6 +479,15 @@ class CarouselSlider extends Component {
 
     }
 
+    handleDragOver(e) {
+        this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
+        let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
+        e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
+        e.dataTransfer.dropEffect = 'none'; // To eliminate green add button on chrome.
+        e.dataTransfer.effectAllowed = 'none';
+        e.preventDefault();
+    }
+
     handleDragStop(e) {
         
         let direction = (this.dragEvent.deltaX > 0) ? 1 : -1;
@@ -490,15 +500,6 @@ class CarouselSlider extends Component {
             e.currentTarget.style.transition = 'transform 0.5s ease';
             e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
         }
-    }
-
-    handleDragOver(e) {
-        this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
-        let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
-        e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
-        e.dataTransfer.dropEffect = 'none'; // To eliminate green add button on chrome.
-        e.dataTransfer.effectAllowed = 'none';
-        e.preventDefault();
     }
 
     setTextBoxStyle() {
