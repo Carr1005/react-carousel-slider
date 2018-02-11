@@ -425,7 +425,7 @@ class Demo extends Component {
                         <li style = {slistStyle} > - Touch events are supported for mobile device veiwport.</li>
                         <li style = {slistStyle} > - In the carousel below, the buttons for navigating are visible only while cursour is hovering,
                          so it won't function normally if we are using mobile device, but the touch events would be registered when the situation 
-                         is detected in our component. Try by using web devTool or your mobile device.</li>
+                         is detected in our component, so dragging is also available. Try by using web devTool or your mobile device.</li>
                     </ul>
                     {autoSliding}
                 </div>
