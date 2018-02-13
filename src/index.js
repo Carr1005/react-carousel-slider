@@ -6,8 +6,13 @@ class CarouselSlider extends Component {
     constructor(props) {
 
         super(props);
+        
+        this.state = {
+            currentSlide: 1
+        };
+
         this.slidingManner = {
-            currentSlide: 1,
+            //currentSlide: 1,
             slidesTotalWidth: 0,
             initialMovement: 0,
             movement: 0,
@@ -318,12 +323,12 @@ class CarouselSlider extends Component {
             } else {
                 this.autoSlidingTimer = setInterval(() => {
 
-                        if (this.slidingManner.currentSlide === (this.slideCnt)) {
+                        if (this.state.currentSlide === (this.slideCnt)) {
                             if (!this.slidingManner.sliding) {
                                 this.slidingManner.direction = -1;
                                 this.moveSlide(this.slidingManner.direction);
                             }
-                        } else if (this.slidingManner.currentSlide === 1) {
+                        } else if (this.state.currentSlide === 1) {
                             if (!this.slidingManner.sliding) {
                                 this.slidingManner.direction = 1;
                                 this.moveSlide(this.slidingManner.direction);
@@ -379,55 +384,104 @@ class CarouselSlider extends Component {
                 slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
                 if (direction === 1) {
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.movement = this.slidingManner.movement + singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide + 1;
-                    
-                    if (this.slidingManner.currentSlide === this.slideCnt + 1) {
-                        this.slidingManner.currentSlide = 1;
-                        this.slidingManner.cycle = (this.slidingManner.cycle === 2) ? 0 : this.slidingManner.cycle + 1;
-                        
-                        this.itemsReorder();
-                        this.movementReset(direction);    
+                    this.slidingManner.movement = this.slidingManner.movement + singleMovement;                
+            
+                    if (this.state.currentSlide === this.slideCnt) {
+    
+                        this.setState((prevState) => ({
+                            currentSlide: 1
+                        }), () => {
+                            console.log('setState');
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                            this.slidingManner.cycle = (this.slidingManner.cycle === 2) ? 0 : this.slidingManner.cycle + 1;
+                            this.itemsReorder();
+                            this.movementReset(direction);
+                        });
+
+                    } else {
+
+                        this.setState((prevState) => ({
+                            currentSlide: prevState.currentSlide + 1
+                        }), () => {
+                            console.log('setState');
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                        });
+
                     }
+ 
                 } else if (direction === -1) {
                     singleMovement = this.calMovement(direction);
                     this.slidingManner.movement = this.slidingManner.movement - singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                    this.slidingManner.currentSlide = (this.slidingManner.currentSlide === 1) ? -1 : this.slidingManner.currentSlide - 1;
+                    console.log('singleMovement:', singleMovement);
+                    //slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    //this.slidingManner.currentSlide = (this.slidingManner.currentSlide === 1) ? -1 : this.slidingManner.currentSlide - 1;
                     
-                    if (this.slidingManner.currentSlide === -1) {
-                        this.slidingManner.currentSlide = this.slideCnt;
-                        this.slidingManner.cycle = (this.slidingManner.cycle === 0) ? 2 : this.slidingManner.cycle - 1;
+                    if (this.state.curretSlide === 1){
+
+                        this.setState((prevState) => ({
+                            currentSlide: -1
+                        }), () => {
+                            console.log('setState');
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                            this.slidingManner.cycle = (this.slidingManner.cycle === 0) ? 2 : this.slidingManner.cycle - 1;
+                            this.itemsReorder();
+                            this.movementReset(direction);
+                        });
+                    
+                    } else {
                         
-                        this.itemsReorder();
-                        this.movementReset(direction);
-                    } 
+                        this.setState((prevState) => ({
+                            currentSlide: prevState.currentSlide - 1
+                        }), () => {
+                            console.log('setState');
+                            console.log('slideMovement:', this.slidingManner.movement);
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                        });
+
+                    }
                 }
 
             } else {
 
                 slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease'; // for after dragging
-                if (direction === 1 && (this.slidingManner.currentSlide < this.slideCnt)) {	
+                
+                if (direction === 1 && (this.state.currentSlide < this.slideCnt)) {	
+                    
                     this.slidingManner.sliding = true;
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide + 1;
                     this.slidingManner.movement = this.slidingManner.movement + singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                } else if (direction === -1 && (this.slidingManner.currentSlide > 1)) {
+                    
+                    this.setState((prevState) => ({
+                        currentSlide: prevState.currentSlide + 1
+                    }), () => {
+                        console.log('setState');
+                        slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    });
+                    
+                } else if (direction === -1 && (this.state.currentSlide > 1)) {
+                    
                     this.slidingManner.sliding = true;
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide - 1;
                     this.slidingManner.movement = this.slidingManner.movement - singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+
+                    this.setState((prevState) => ({
+                        currentSlide: prevState.currentSlide - 1
+                    }), () => {
+                        console.log('setState');
+                        slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    });
+                } else {
+                    return false; //for dragging
                 }
             }
         }
     }
 
     calMovement(direction){
-        let count = (direction === 1) ? 1 : ((this.slidingManner.currentSlide === 1) ? -2 : -1);
-        let movement = this.imgsWidth[this.slidingManner.currentSlide] / 2 + (this.itemsMargin * 2) + this.imgsWidth[this.slidingManner.currentSlide + count] / 2;
+        let count = (direction === 1) ? 1 : ((this.state.currentSlide === 1) ? -2 : -1);
+        console.log('currentSlide:', this.state.currentSlide);
+        let movement = this.imgsWidth[this.state.currentSlide] / 2 + (this.itemsMargin * 2) + this.imgsWidth[this.state.currentSlide + count] / 2;
+        
         return movement;
     }
 
@@ -453,7 +507,12 @@ class CarouselSlider extends Component {
             if (!this.slidingManner.sliding) {
                 if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
                     let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
-                    this.moveSlide(direction);
+                    let draggable = this.moveSlide(direction);
+                    if(draggable === false) {
+                        e.currentTarget.style.transition = 'transform 0.5s ease';
+                        e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    }
+
                 } else {
                     e.currentTarget.style.transition = 'transform 0.5s ease';
                     e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
@@ -494,8 +553,13 @@ class CarouselSlider extends Component {
         this.slidingManner.sliding = false;
         if (Math.abs(this.dragEvent.deltaX) > this.dragEvent.threshold) {
             if (!this.slidingManner.sliding) {
-                this.moveSlide(direction);
+                let draggable = this.moveSlide(direction);
+                if(draggable === false) {
+                    e.currentTarget.style.transition = 'transform 0.5s ease';
+                    e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                }
             }
+
         } else {
             e.currentTarget.style.transition = 'transform 0.5s ease';
             e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';

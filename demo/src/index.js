@@ -563,14 +563,13 @@ class Demo extends Component {
                             );
 
 
-                            /*
-                                The easy way to integrate material-icons resource into your project is including the 
-                                link below into your index.html:
-                                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                                or import it in your css file:
-                                    @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
-                            */
+                        /*
+                            The easy way to integrate material-icons resource into your project is 
+                            including the link below into your index.html:
+                                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                            or import it in your css file:
+                                @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+                        */
 
                             let btnStyle = {
                                 fontSize: "36px",
@@ -591,7 +590,13 @@ class Demo extends Component {
                             
                             let buttonSetting = {
                                 placeOn: "middle-outside",
-                                style: {     /* Cause that we are passing custom button components, properties here won't be applied.*/
+
+                                /* 
+                                    Cause that we are passing custom button components, properties 
+                                    here won't be applied.
+                                */
+
+                                style: {     
                                     left: {
                                         background: "rgba(111, 111, 111, 0.8)",
                                     },
@@ -601,10 +606,13 @@ class Demo extends Component {
                                 }
                             };
 
-                            /* We use property 'minWidth' to give the button-like slides width space here. In common usage,
-                             this css property should not be used, because of the mechanism of this component behind. It let 
-                             image fit the height of the slider box first then decide the width value of the slide Item, but 
-                             we don't have images here, so we need to give the width by ourselves.*/
+                        /* 
+                            We use property 'minWidth' to give the button-like slides width space here. 
+                            In common usage, this css property should not be used, because of the mechanism 
+                            of this component behind. It let image fit the height of the slider box first 
+                            then decide the width value of the slide Item, but we don't have images here, 
+                            so we need to give the width by ourselves.
+                        */
 
                             let buttonsUsage = (
                                 <div style = {{height: "auto", position:"relative", margin: "0 auto", width: "50%", padding: "50px 0px"}} >
