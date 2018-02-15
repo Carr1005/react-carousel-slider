@@ -19,6 +19,7 @@ class CarouselSlider extends Component {
 
         this.dragEvent = {
             startPoint:0,
+            dragging: false,
             deltaX: 0,
             thrershold: 0,
             disableDragImage: (() => {
@@ -420,6 +421,9 @@ class CarouselSlider extends Component {
                     this.slidingManner.currentSlide = this.slidingManner.currentSlide - 1;
                     this.slidingManner.movement = this.slidingManner.movement - singleMovement;
                     slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                } 
+                else {
+                    return false; //for dragging
                 }
             }
         }
@@ -447,13 +451,18 @@ class CarouselSlider extends Component {
     }
 
     handleTouchEnd(e) {
-        this.slidingManner.sliding = false;
 
         if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
+            this.slidingManner.sliding = false;
             if (!this.slidingManner.sliding) {
                 if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
                     let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
-                    this.moveSlide(direction);
+                    let draggable = this.moveSlide(direction);
+                    if(draggable === false) {
+                        e.currentTarget.style.transition = 'transform 0.5s ease';
+                        e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    }
+
                 } else {
                     e.currentTarget.style.transition = 'transform 0.5s ease';
                     e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
@@ -472,33 +481,49 @@ class CarouselSlider extends Component {
 
     handleDragStart(e) {
         
-        this.slidingManner.sliding = true;
-        e.currentTarget.style.transition = 'none';
-        this.dragEvent.startPoint = e.clientX;
-        e.dataTransfer.setDragImage(this.dragEvent.disableDragImage, 1, 1);
+        if (this.slidingManner.sliding === false && this.dragEvent.dragging === false) {
+            this.slidingManner.sliding = true;  //prevent auto sliding
+            this.dragEvent.dragging = true;
+            e.currentTarget.style.transition = 'none';
+            this.dragEvent.startPoint = e.clientX;
+            e.dataTransfer.setDragImage(this.dragEvent.disableDragImage, 1, 1);
+        }
 
     }
 
     handleDragOver(e) {
-        this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
-        let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
-        e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
+        
         e.dataTransfer.dropEffect = 'none'; // To eliminate green add button on chrome.
         e.dataTransfer.effectAllowed = 'none';
         e.preventDefault();
+        if (this.dragEvent.dragging === true) {
+            this.dragEvent.deltaX = this.dragEvent.startPoint - e.clientX ;
+            let dragMovement = this.slidingManner.movement + this.dragEvent.deltaX;
+            e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
+        }
     }
 
     handleDragStop(e) {
         
-        let direction = (this.dragEvent.deltaX > 0) ? 1 : -1;
-        this.slidingManner.sliding = false;
-        if (Math.abs(this.dragEvent.deltaX) > this.dragEvent.threshold) {
-            if (!this.slidingManner.sliding) {
-                this.moveSlide(direction);
+        if (this.dragEvent.dragging === true) {
+            if (Math.abs(this.dragEvent.deltaX) > this.dragEvent.threshold) {
+                this.slidingManner.sliding = false;
+                if (!this.slidingManner.sliding) {
+                    let direction = (this.dragEvent.deltaX > 0) ? 1 : -1;
+                    let draggable = this.moveSlide(direction);
+                    if (draggable === false) {
+                        e.currentTarget.style.transition = 'transform 0.5s ease';
+                        e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    }
+                }
+
+            } else {
+                e.currentTarget.style.transition = 'transform 0.5s ease';
+                e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
             }
-        } else {
-            e.currentTarget.style.transition = 'transform 0.5s ease';
-            e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+            this.dragEvent.startPoint = 0;
+            this.dragEvent.deltaX = 0;
+            this.dragEvent.dragging = false;
         }
     }
 
