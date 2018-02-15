@@ -436,14 +436,17 @@ class CarouselSlider extends Component {
     }
 
     handleTouchStart(e) {
-        this.slidingManner.sliding = true;
-        this.touchEvent.touchStartX = e.targetTouches[0].clientX;
-        this.touchEvent.beingTouched = true;
+        if (this.slidingManner.sliding === false) {
+            this.slidingManner.sliding = true;
+            this.touchEvent.touchStartX = e.targetTouches[0].clientX;
+            this.touchEvent.beingTouched = true;
+        }
     }
 
     handleTouchMove(e) {
-        this.slidingManner.sliding = true;
+
         if (this.touchEvent.beingTouched) {
+            this.slidingManner.sliding = true;
             this.touchEvent.touchMovement = this.touchEvent.touchStartX - e.targetTouches[0].clientX;         
             let dragMovement = this.slidingManner.movement + this.touchEvent.touchMovement;
             e.currentTarget.style.transform = 'translateX(-' + dragMovement + 'px)';
@@ -452,24 +455,27 @@ class CarouselSlider extends Component {
 
     handleTouchEnd(e) {
 
-        if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
-            this.slidingManner.sliding = false;
-            if (!this.slidingManner.sliding) {
-                if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
-                    let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
-                    let draggable = this.moveSlide(direction);
-                    if(draggable === false) {
+        if (this.touchEvent.beingTouched) {
+            
+            if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
+                this.slidingManner.sliding = false;
+                if (!this.slidingManner.sliding) {
+                    if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
+                        let direction = (this.touchEvent.touchMovement > 0) ? 1 : -1;
+                        let draggable = this.moveSlide(direction);
+                        if(draggable === false) {
+                            e.currentTarget.style.transition = 'transform 0.5s ease';
+                            e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                        }
+
+                    } else {
                         e.currentTarget.style.transition = 'transform 0.5s ease';
                         e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
                     }
-
-                } else {
-                    e.currentTarget.style.transition = 'transform 0.5s ease';
-                    e.currentTarget.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
                 }
+                this.touchEvent.touchStartX = 0;
+                this.touchEvent.beingTouched = false;
             }
-            this.touchEvent.touchStartX = 0;
-            this.touchEvent.beingTouched = false;
         }
     }
 
