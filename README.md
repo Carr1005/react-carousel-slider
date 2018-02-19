@@ -200,8 +200,7 @@ Available keys and expected values in object which `dotsSetting.style` accepts.
 | * dotColor      | `rgb()` \| `rgba()` \| hex value |  `"#dbdbdb"` |                                     |
 | * currDotSize   |    `<length>`                    |  `"12px"`    | For width and height of current dot.|
 | * currDotColor  | `rgb()` \| `rgba()` \| hex value |  `"#3897f0"` |                                     |
-| * marginTop     |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when 
-`placeOn` is set to `top`.|
+| * marginTop     |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when `placeOn` is set to `top`.|
 | * marginBottom  |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when `placeOn` is set to `bottom`.|
 
 ***
