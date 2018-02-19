@@ -963,9 +963,9 @@ class CarouselSlider extends Component {
                 for (let i = 0; i < this.slideCnt; i++) {
                     let dot; 
                     if ((i + 1) === this.state.currentSlide) {
-                        dot = (<div style = {this.setCurrentDotStyle()}></div>);
+                        dot = (<div key = {'dot' + i} style = {this.setCurrentDotStyle()}></div>);
                     } else {
-                        dot = (<div style = {this.setDotStyle()}></div>);
+                        dot = (<div key = {'dot' + i} style = {this.setDotStyle()}></div>);
                     }
                     dots.push(dot);
                 } 
