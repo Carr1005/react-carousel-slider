@@ -175,6 +175,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 * `accEle` <a id="accEle"></a> - accepts an object, to decide whether accessory elements show or not.
 
 | Key           | Value               | Default | Description & Notice |
+|:---           |      :---:          |:---:    |:---                  |
 | * button      | `true \| false`     | `true`  | You may want to set it to `false` in</br>some situations, e.g., in mobile device viewport.|
 | * dots        | `true \| false`     | `true`  |                      |
 | * flag        | `true \| false`     | `false` |                      |
@@ -185,7 +186,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
-| * placeOn     | `top`</br>\| `bottom`</br>\| `beneath` | Only options in column **Value** are</br>available, fine-tune the position with `margin-`</br>property in `style` below.|
+| * placeOn     | `top`</br>\| `bottom`</br>\| `beneath` | |Only options in column **Value** are</br>available, fine-tune the position with `margin-`</br>property in `style` below.|
 | * style       | `{}`                    |              |                      |
 
 ***
@@ -201,8 +202,7 @@ Available keys and expected values in object which `dotsSetting.style` accepts.
 | * currDotColor  | `rgb()` \| `rgba()` \| hex value |  `"#3897f0"` |                                     |
 | * marginTop     |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when 
 `placeOn` is set to `top`.|
-| * marginBottom  |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when 
-`placeOn` is set to `bottom`.|
+| * marginBottom  |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when `placeOn` is set to `bottom`.|
 
 ***
 
