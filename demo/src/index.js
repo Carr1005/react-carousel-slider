@@ -164,6 +164,79 @@ class Demo extends Component {
         let buttonsUsage = (<Router><CarouselSlider slideCpnts = {buttons} accEle = {{dots: false}} manner = {{circular: false}} sliderBoxStyle = {{width: "80%", background: "transparent"}} buttonSetting = {buttonSetting3} rBtnCpnt = {rBtnCpnt} lBtnCpnt = {lBtnCpnt} itemsStyle = {itemsStyle2} /></Router>);
         
         
+
+
+        let pItemsStyle = {
+            padding: "0px",
+            background: "white",
+            margin:"0 30px",
+            boxShadow: "1px 1px 1px 1px #9E9E9E",
+            borderRadius: "4px"
+        };
+
+        let imgStyle = {
+            height: "70%",
+            borderBottom: "1px solid #9E9E9E"
+        };
+        
+        let textBoxStyle5 = {
+            width: "40%",
+            top: "290px",
+            color: "black",
+            background: "transparent",
+            fontSize: "14px",
+            fontFamily: "Times New Roman"
+        };
+
+        let textBoxStyle6 = {
+            width: "70%",
+            top: "330px",
+            color: "black",
+            background: "transparent",
+            fontSize: "12px",
+            fontStyle: "italic"
+        };
+
+        let scientists = jsonData.Scientists.items.map((item, index) => 
+            <div key = {index} >
+                <img style = {imgStyle} src = {item.imgSrc} ></img>
+                <p style = {textBoxStyle5} >{item.name}</p>
+                <p style = {textBoxStyle6} >{item.des}</p>
+            </div>
+        );
+        
+        let btnShell = {
+            position: "relative",
+            borderRadius: "50%",
+            height: "60px",
+            width: "60px",
+            boxShadow: "1px 1px 1px 1px #9E9E9E",
+            textAlign: "center"
+        }
+
+        let gbtnStyle = {
+            display: "inline-block",
+            position: "relative",
+            top: "50%",
+            transform: "translateY(-50%)",
+            fontSize: "36px"
+        }
+
+        let grBtnCpnt = (<div style = {btnShell} ><div style = {gbtnStyle} className = "material-icons" >chevron_right</div></div>);
+        let glBtnCpnt = (<div style = {btnShell} ><div style = {gbtnStyle} className = "material-icons" >chevron_left</div></div>);        
+        
+        let scientistsCard = (<CarouselSlider 
+            sliderBoxStyle = {{height: "450px", width: "80%", background: "transparent"}} 
+            accEle = {{dots: false}}
+            slideCpnts = {scientists} 
+            itemsStyle = {pItemsStyle} 
+            buttonSetting = {{placeOn: 'middle-outside'}}
+            rBtnCpnt = {grBtnCpnt}
+            lBtnCpnt = {glBtnCpnt}
+        />);
+
+        
+
         let separaterStyle = {
             width: "80%", 
             margin: "50px auto",
@@ -650,6 +723,136 @@ class Demo extends Component {
                                             lBtnCpnt = {lBtnCpnt} 
                                             itemsStyle = {itemsStyle} />
                                     </Router>
+                            </div>);
+                        }
+
+                    `}</pre>
+                </div>
+
+                <div className = "separater" style = {separaterStyle} ></div>
+
+                <div id = "moreExample" style = {{height: "auto", padding: "50px 0px"}} >
+                    <h2 style = {titleStyle} >More Examples</h2>
+                </div>
+                <div style = {{position:"relative", margin: "0 auto", width: "70%"}} >
+                    {scientistsCard}
+                </div>
+                <div style = {codeBlockStyle}>
+                    <h4 style = {titleStyle} >slidesExample.json</h4>
+                    <pre style = {preJsonStyle}>{`
+                        {
+                            "Scientists": {
+
+                                "items": [
+                                    {
+                                        "imgSrc": "https://...",
+                                        "name": "Niklas Koppernigk",
+                                        "des": "19 February 1473 – 24 May 1543"
+                                    },
+                                    {
+                                        "imgSrc": "https://...",
+                                        "name": "Galileo Galilei",
+                                        "des": "15 February 1564 – 8 January 1642"
+                                    },
+                                    {
+                                        "imgSrc": "https://...",
+                                        "name": "Michael Faraday",
+                                        "des": "22 September 1791 – 25 August 1867"
+                                    },
+                                    {
+                                        "imgSrc": "https://...",
+                                        "name": "Marie Curie",
+                                        "des": "7 November 1867 – 4 July 1934"
+                                    },
+                                    {
+                                        "imgSrc": "https://...",
+                                        "name": "Albert Einstein",
+                                        "des": "14 March 1879 – 18 April 1955"
+                                    }
+                                ]
+                            }
+                        }
+                    `}</pre>
+                    <h4 style = {titleStyle} >.js</h4>
+                    <pre style = {preCodeStyle}>{`
+                        render() {
+
+                            let itemsStyle = {
+                                padding: "0px",
+                                background: "white",
+                                margin:"0 30px",
+                                boxShadow: "1px 1px 1px 1px #9E9E9E",
+                                borderRadius: "4px"
+                            };
+
+                            let imgStyle = {
+                                height: "70%",
+                                borderBottom: "1px solid #9E9E9E"
+                            };
+                            
+                            let textBoxStyle = {
+                                width: "40%",
+                                top: "290px",
+                                color: "black",
+                                background: "transparent",
+                                fontSize: "14px",
+                                fontFamily: "Times New Roman"
+                            };
+
+                            let textBoxStyle2 = {
+                                width: "70%",
+                                top: "330px",
+                                color: "black",
+                                background: "transparent",
+                                fontSize: "12px",
+                                fontStyle: "italic"
+                            };
+
+                            let scientists = jsonData.Scientists.items.map((item, index) => 
+                                <div key = {index} >
+                                    <img style = {imgStyle} src = {item.imgSrc} ></img>
+                                    <p style = {textBoxStyle} >{item.name}</p>
+                                    <p style = {textBoxStyle2} >{item.des}</p>
+                                </div>
+                            );
+
+                            let btnWrapperStyle = {
+                                position: "relative",
+                                borderRadius: "50%",
+                                height: "60px",
+                                width: "60px",
+                                boxShadow: "1px 1px 1px 1px #9E9E9E",
+                                textAlign: "center"
+                            }
+
+                            let btnStyle = {
+                                display: "inline-block",
+                                position: "relative",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                fontSize: "36px"
+                            }
+
+                            let rBtnCpnt = (<div style = {btnWrapperStyle} >
+                                <div style = {btnStyle} className = "material-icons" >chevron_right</div>
+                            </div>);
+
+                            let lBtnCpnt = (<div style = {btnWrapperStyle} >
+                                <div style = {btnStyle} className = "material-icons" >chevron_left</div>
+                            </div>);        
+                            
+                            let scientistsCard = (<CarouselSlider 
+                                sliderBoxStyle = {{height: "450px", width: "80%", background: "transparent"}} 
+                                accEle = {{dots: false}}
+                                slideCpnts = {scientists} 
+                                itemsStyle = {itemsStyle} 
+                                buttonSetting = {{placeOn: 'middle-outside'}}
+                                rBtnCpnt = {rBtnCpnt}
+                                lBtnCpnt = {lBtnCpnt}
+                            />);
+
+                            return (<div style = {{position:"relative", margin: "0 auto", width: "70%"}} >
+                                {scientistsCard}
                             </div>);
                         }
 
