@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 .sliderSet {
-	display: flex;
-	align-items: center;
+	
 	width: 100%;
 }
 
@@ -85,7 +84,6 @@
 	display: flex;
 	justify-content: center;
 	z-index: 2000;
-	
 }
 
 .sliderBox:hover .buttonWrapper {
@@ -138,11 +136,24 @@
 }
 
 .right {
+
 	position: absolute;
 	right: 0px;
+
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .left {
+
 	position: absolute;
 	left: 0px;
+
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.dotsSet {
+	width: fit-content;
+	z-index: 2000;
 }

@@ -6,8 +6,13 @@ class CarouselSlider extends Component {
     constructor(props) {
 
         super(props);
+        
+        this.state = {
+            currentSlide: 1
+        };
+
         this.slidingManner = {
-            currentSlide: 1,
+            //currentSlide: 1,
             slidesTotalWidth: 0,
             initialMovement: 0,
             movement: 0,
@@ -39,13 +44,39 @@ class CarouselSlider extends Component {
         this.mannerSetting = {
             autoSliding: false, //{interval: }
             circular: true,
-            duration: "0.5s",
-            flag: false,
-            button: true
+            duration: "0.5s"
         };
 
         this.mannerSetting = this.handleMannerSetting();
 
+        this.accEleSetting = {
+            flag: false,
+            button: true,
+            dots: true
+        }
+
+        this.accEleSetting = this.handleAccEleSetting();
+        
+        this.defaultDotStyle = {
+            display: "inline-block", 
+            verticalAlign: "middle", 
+            margin: "0 5px", 
+            background: "#dbdbdb",  
+            height: "10px", 
+            width: "10px", 
+            borderRadius: "50%"
+        }
+
+        this.defaultCurrDotStyle = {
+            display: "inline-block", 
+            verticalAlign: "middle", 
+            margin: "0 5px", 
+            background: "#3897f0",  
+            height: "12px", 
+            width: "12px", 
+            borderRadius: "50%"
+        }
+        
         this.defaultSliderBoxStyle = {
             height: "400px",
             width: "90%",
@@ -73,6 +104,10 @@ class CarouselSlider extends Component {
             //no style
         };
 
+        this.defaultDotsSetStyle = {
+            margin: "15px auto"
+        };
+
         this.defaultButtonIconStyle = {
             color: "white",
             background: "#757575",
@@ -93,6 +128,13 @@ class CarouselSlider extends Component {
             "bottom-left": false,
             "bottom-beneath": false
         };
+
+        this.defaultDotsPosition = {
+            "beneath": true,
+            "top": false,  /**/    
+            "bottom": false
+        };
+
 
         this.itemsMargin = (this.props.itemsStyle ? 
             (this.props.itemsStyle.margin ? 
@@ -116,6 +158,9 @@ class CarouselSlider extends Component {
         this.initialSlideCon =  this.initialSlideCon.bind(this);
         this.calMovement = this.calMovement.bind(this);
         this.autoSliding = this.autoSliding.bind(this);
+        this.handleMannerSetting = this.handleMannerSetting.bind(this);
+        this.handleAccEleSetting = this.handleAccEleSetting.bind(this);
+
         // this.handleBubbling = this.handleBubbling.bind(this);
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchMove = this.handleTouchMove.bind(this);
@@ -129,8 +174,12 @@ class CarouselSlider extends Component {
         this.setSliderBoxStyles = this.setSliderBoxStyles.bind(this);
         this.setItemsStyle = this.setItemsStyle.bind(this);
         this.setSlideConHeight = this.setSlideConHeight.bind(this);
+        this.setDotStyle = this.setDotStyle.bind(this);
+        this.setCurrentDotStyle = this.setCurrentDotStyle.bind(this);
 
         this.detectButtonPosition = this.detectButtonPosition.bind(this);
+        this.detectDotsPosition = this.detectDotsPosition.bind(this);
+        this.allocateDotsSet = this.allocateDotsSet.bind(this);
         this.allocateButtonSet = this.allocateButtonSet.bind(this);
         this.setLeftButtonStyle = this.setLeftButtonStyle.bind(this);
         this.setHoverEvent = this.setHoverEvent.bind(this);
@@ -145,12 +194,20 @@ class CarouselSlider extends Component {
     componentWillUnmount() {
         clearInterval(this.autoSlidingTimer);
     }
-
+    
     handleMannerSetting() {
         if (this.props.manner) {
             return Object.assign({}, this.mannerSetting, this.props.manner);
         } else {
             return this.mannerSetting;
+        }
+    }
+
+    handleAccEleSetting() {
+        if (this.props.accEle) {
+            return Object.assign({}, this.accEleSetting, this.props.accEle);
+        } else {
+            return this.accEleSetting;
         }
     }
 
@@ -306,7 +363,6 @@ class CarouselSlider extends Component {
     }
 
     autoSliding() {
-
         if (this.mannerSetting.autoSliding && this.slideCnt !== 1) {
             let seconds = this.mannerSetting.autoSliding.interval.slice(0, -1);
             let milliseconds = parseInt(seconds) * 1000;
@@ -319,12 +375,12 @@ class CarouselSlider extends Component {
             } else {
                 this.autoSlidingTimer = setInterval(() => {
 
-                        if (this.slidingManner.currentSlide === (this.slideCnt)) {
+                        if (this.state.currentSlide === (this.slideCnt)) {
                             if (!this.slidingManner.sliding) {
                                 this.slidingManner.direction = -1;
                                 this.moveSlide(this.slidingManner.direction);
                             }
-                        } else if (this.slidingManner.currentSlide === 1) {
+                        } else if (this.state.currentSlide === 1) {
                             if (!this.slidingManner.sliding) {
                                 this.slidingManner.direction = 1;
                                 this.moveSlide(this.slidingManner.direction);
@@ -380,49 +436,86 @@ class CarouselSlider extends Component {
                 slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease';
                 if (direction === 1) {
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.movement = this.slidingManner.movement + singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide + 1;
-                    
-                    if (this.slidingManner.currentSlide === this.slideCnt + 1) {
-                        this.slidingManner.currentSlide = 1;
-                        this.slidingManner.cycle = (this.slidingManner.cycle === 2) ? 0 : this.slidingManner.cycle + 1;
-                        
-                        this.itemsReorder();
-                        this.movementReset(direction);    
+                    this.slidingManner.movement = this.slidingManner.movement + singleMovement;                
+            
+                    if (this.state.currentSlide === this.slideCnt) {
+    
+                        this.setState((prevState) => ({
+                            currentSlide: 1
+                        }), () => {
+
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                            this.slidingManner.cycle = (this.slidingManner.cycle === 2) ? 0 : this.slidingManner.cycle + 1;
+                            this.itemsReorder();
+                            this.movementReset(direction);
+
+                        });
+
+                    } else {
+
+                        this.setState((prevState) => ({
+                            currentSlide: prevState.currentSlide + 1
+                        }), () => {
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                        });
+
                     }
+ 
                 } else if (direction === -1) {
                     singleMovement = this.calMovement(direction);
                     this.slidingManner.movement = this.slidingManner.movement - singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                    this.slidingManner.currentSlide = (this.slidingManner.currentSlide === 1) ? -1 : this.slidingManner.currentSlide - 1;
+                    //slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    //this.slidingManner.currentSlide = (this.slidingManner.currentSlide === 1) ? -1 : this.slidingManner.currentSlide - 1;
+                    if (this.state.currentSlide === 1){
+
+                        this.setState((prevState) => ({
+                            currentSlide: this.slideCnt
+                        }), () => {
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                            this.slidingManner.cycle = (this.slidingManner.cycle === 0) ? 2 : this.slidingManner.cycle - 1;
+                            this.itemsReorder();
+                            this.movementReset(direction);
+                        });
                     
-                    if (this.slidingManner.currentSlide === -1) {
-                        this.slidingManner.currentSlide = this.slideCnt;
-                        this.slidingManner.cycle = (this.slidingManner.cycle === 0) ? 2 : this.slidingManner.cycle - 1;
+                    } else {
                         
-                        this.itemsReorder();
-                        this.movementReset(direction);
-                    } 
+                        this.setState((prevState) => ({
+                            currentSlide: prevState.currentSlide - 1
+                        }), () => {
+                            slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                        });
+
+                    }
                 }
 
             } else {
 
                 slideCon.style.transition = 'transform ' + this.mannerSetting.duration + ' ease'; // for after dragging
-                if (direction === 1 && (this.slidingManner.currentSlide < this.slideCnt)) {	
+                
+                if (direction === 1 && (this.state.currentSlide < this.slideCnt)) {	
+                    
                     this.slidingManner.sliding = true;
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide + 1;
                     this.slidingManner.movement = this.slidingManner.movement + singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                } else if (direction === -1 && (this.slidingManner.currentSlide > 1)) {
+                    
+                    this.setState((prevState) => ({
+                        currentSlide: prevState.currentSlide + 1
+                    }), () => {
+                        slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    });
+                    
+                } else if (direction === -1 && (this.state.currentSlide > 1)) {
+                    
                     this.slidingManner.sliding = true;
                     singleMovement = this.calMovement(direction);
-                    this.slidingManner.currentSlide = this.slidingManner.currentSlide - 1;
                     this.slidingManner.movement = this.slidingManner.movement - singleMovement;
-                    slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
-                } 
-                else {
+
+                    this.setState((prevState) => ({
+                        currentSlide: prevState.currentSlide - 1
+                    }), () => {
+                        slideCon.style.transform = 'translateX(-' + this.slidingManner.movement + 'px)';
+                    });
+                } else {
                     return false; //for dragging
                 }
             }
@@ -430,8 +523,8 @@ class CarouselSlider extends Component {
     }
 
     calMovement(direction){
-        let count = (direction === 1) ? 1 : ((this.slidingManner.currentSlide === 1) ? -2 : -1);
-        let movement = this.imgsWidth[this.slidingManner.currentSlide] / 2 + (this.itemsMargin * 2) + this.imgsWidth[this.slidingManner.currentSlide + count] / 2;
+        let count = (direction === 1) ? 1 : ((this.state.currentSlide === 1) ? -2 : -1);
+        let movement = this.imgsWidth[this.state.currentSlide] / 2 + (this.itemsMargin * 2) + this.imgsWidth[this.state.currentSlide + count] / 2;
         return movement;
     }
 
@@ -444,7 +537,6 @@ class CarouselSlider extends Component {
     }
 
     handleTouchMove(e) {
-
         if (this.touchEvent.beingTouched) {
             this.slidingManner.sliding = true;
             this.touchEvent.touchMovement = this.touchEvent.touchStartX - e.targetTouches[0].clientX;         
@@ -456,8 +548,7 @@ class CarouselSlider extends Component {
     handleTouchEnd(e) {
 
         if (this.touchEvent.beingTouched) {
-            
-            if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {
+            if (Math.abs(this.touchEvent.touchStartX - e.changedTouches[0].clientX) > 20) {     
                 this.slidingManner.sliding = false;
                 if (!this.slidingManner.sliding) {
                     if (Math.abs(this.touchEvent.touchMovement) > this.dragEvent.threshold) {
@@ -555,6 +646,134 @@ class CarouselSlider extends Component {
         } else {
             return {height: this.defaultSlideConStyle.height};
         }
+    }
+
+    setDotStyle() {
+        let dotStyle = {};
+        if (this.props.dotsSetting) {
+            if (this.props.dotsSetting.style) {
+                if (this.props.dotsSetting.style.dotSpace) {
+                    dotStyle.margin = "0px " + this.props.dotsSetting.style.dotSpace;
+                }
+
+                if (this.props.dotsSetting.style.dotSize) {
+                    dotStyle.height = this.props.dotsSetting.style.dotSize;
+                    dotStyle.width = this.props.dotsSetting.style.dotSize;
+                }
+
+                if (this.props.dotsSetting.style.dotColor) {
+                    dotStyle.background = this.props.dotsSetting.style.dotColor;
+                }
+
+                return Object.assign({}, this.defaultDotStyle, dotStyle);
+
+            } else {
+                return this.defaultDotStyle;
+            }
+        } else {
+            return this.defaultDotStyle;
+        }
+    }
+
+    setCurrentDotStyle() {
+        let currDotStyle = {};
+        if (this.props.dotsSetting) {
+            if (this.props.dotsSetting.style) {
+                if (this.props.dotsSetting.style.dotSpace) {
+                    currDotStyle.margin = "0px " + this.props.dotsSetting.style.dotSpace;
+                }
+
+                if (this.props.dotsSetting.style.currDotSize) {
+                    currDotStyle.height = this.props.dotsSetting.style.currDotSize;
+                    currDotStyle.width = this.props.dotsSetting.style.currDotSize;
+                }
+
+                if (this.props.dotsSetting.style.currDotColor) {
+                    currDotStyle.background = this.props.dotsSetting.style.currDotColor;
+                }
+
+                return Object.assign({}, this.defaultCurrDotStyle, currDotStyle);
+
+            } else {
+                return this.defaultCurrDotStyle;
+            }
+        } else {
+            return this.defaultCurrDotStyle;
+        }
+    }
+
+    detectDotsPosition() {
+        let position;
+        // let customDotsPosition = {};
+        let dotsPosition = this.defaultDotsPosition;
+        if (this.props.dotsSetting) {
+            if (this.props.dotsSetting.placeOn) {
+                if (dotsPosition[this.props.dotsSetting.placeOn] === false) {
+                    dotsPosition[this.props.dotsSetting.placeOn] = true;
+                }
+            }
+        }
+
+        for (let key in dotsPosition) {
+            if (dotsPosition[key] === true) {
+                position = key;
+            }
+        }
+
+        
+        if (position === 'beneath') {    
+            return {
+                vertical: "beneath"
+                // ,outOfBox: true
+            };
+        } else {
+            if (position === 'top') {
+                return {
+                    vertical: "top"
+                    // ,outOfBox: false
+                };
+            } else {
+                return {
+                    vertical: "bottom"
+                    // ,outOfBox: false
+                };
+            }
+        }
+    }
+
+    allocateDotsSet(setting) {
+        let style = {};
+        style = Object.assign({}, this.defaultDotsSetStyle);
+        if (this.props.dotsSetting) {
+            if (this.props.dotsSetting.style) {
+                for (let key in this.props.dotsSetting.style) {
+                    
+                    if (key.includes('margin')) {
+                        style[key] = this.props.dotsSetting.style[key];
+                    }
+                }
+            }
+        }
+
+        switch (setting.vertical) {
+            case 'top':
+                style['position'] = 'absolute';
+                style['right'] = '0px';
+                style['left'] = '0px';
+                style['top'] = '0px';
+            break;
+
+            case 'bottom':
+                style['position'] = 'absolute';
+                style['right'] = '0px';
+                style['left'] = '0px';
+                style['bottom'] = '0px';
+            break;  
+            case 'beneath':
+            break;
+            
+        }
+        return style;
     }
 
     detectButtonPosition() {
@@ -681,20 +900,19 @@ class CarouselSlider extends Component {
 
     render() {
         
-        let renderSlideItems, items, sflag, eflag, slideCon, buttons, leftButton, rightButton, lButtonIcon, rButtonIcon, buttonSetting;
+        let renderSlideItems, items, sflag, eflag, slideCon, buttons, leftButton, rightButton, lButtonIcon, rButtonIcon, buttonSetting, dotsSet, dotsSetting;
         
         if (this.slideCnt) {
-            if (this.mannerSetting.button) {
+            
+            if (this.accEleSetting.button) {
+                
                 buttonSetting = this.detectButtonPosition();
-
                 lButtonIcon = this.props.lBtnCpnt ? this.props.lBtnCpnt : (<div className = 'arrowBtn previous' style = {this.setLeftButtonStyle()} ></div>);
                 rButtonIcon = this.props.rBtnCpnt ? this.props.rBtnCpnt : (<div className = 'arrowBtn next' style = {this.setRightButtonStyle()} ></div>);
                 
                 if (buttonSetting.separate) {
-                    
                     leftButton = (<div className = 'buttonWrapper left' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>);
                     rightButton = (<div className = 'buttonWrapper right' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(1)} >{rButtonIcon}</div>);
-
                 } else {
                     buttons = (<div className = 'buttonSet' style = {this.allocateButtonSet(buttonSetting)} >
                         <div className = 'buttonWrapper' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>
@@ -703,7 +921,7 @@ class CarouselSlider extends Component {
                 }
             }
 
-            if (this.mannerSetting.circular && this.slideCnt > 1) { // Ignore this.mannerSetting.flag in this scope.
+            if (this.mannerSetting.circular && this.slideCnt > 1) { // Ignore this.accEleSetting.flag in this scope.
 
                 items = this.slideEls.map((slideEl, index) => this.slideItemHandler(slideEl, index - this.slideCnt));
                 items = items.concat(this.slideEls.map((slideEl, index) => this.slideItemHandler(slideEl, index + 1)));
@@ -711,7 +929,7 @@ class CarouselSlider extends Component {
 
             } else {
 
-                if (this.mannerSetting.flag) {
+                if (this.accEleSetting.flag) {
                     sflag = (<div className = 'flag' ref = 'sflag' style = {{order: 0}} key = {'sflag'} ></div>) 
                     eflag = (<div className = 'flag' ref = 'eflag' style = {{order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
                 } else {
@@ -738,48 +956,62 @@ class CarouselSlider extends Component {
                 style = {this.setSlideConHeight()} >
                 {items}
             </div>);
+
+            if (this.accEleSetting.dots) {
+                dotsSetting = this.detectDotsPosition();    
+                let dots = [];
+                for (let i = 0; i < this.slideCnt; i++) {
+                    let dot; 
+                    if ((i + 1) === this.state.currentSlide) {
+                        dot = (<div style = {this.setCurrentDotStyle()}></div>);
+                    } else {
+                        dot = (<div style = {this.setDotStyle()}></div>);
+                    }
+                    dots.push(dot);
+                } 
+                dotsSet = (<div className = 'dotsSet' style = {this.allocateDotsSet(dotsSetting)}>{dots}</div>);
+            }
     
-            if (this.mannerSetting.button) {
-                if (buttonSetting.separate) {
-                    if (buttonSetting.outOfBox) {
-                        renderSlideItems = (<div className = 'sliderSet' >
-                            {leftButton}
-                            <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
-                                {slideCon}
-                            </div>
-                            {rightButton}
-                        </div>);
-                    } else {
-                        renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
-                            {leftButton}
+            if (this.accEleSetting.button) {
+                if (this.accEleSetting.dots) {
+                    renderSlideItems = (<div className = 'sliderSet'>
+                        {buttonSetting.outOfBox ? (buttonSetting.separate ? leftButton : null) : null}
+                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                            {buttonSetting.outOfBox ? null : (buttonSetting.separate ? leftButton : buttons)}
+                            {(dotsSetting.vertical !== 'beneath') ? dotsSet : null}  
                             {slideCon}
-                            {rightButton}
-                        </div>);
-                    }
+                            {buttonSetting.outOfBox ? null : (buttonSetting.separate ? rightButton : null)}
+                        </div>
+                        {(dotsSetting.vertical === 'beneath') ? dotsSet : null}
+                        {buttonSetting.outOfBox ? (buttonSetting.separate ? rightButton : buttons) : null}
+                    </div>);
                 } else {
-                    if (buttonSetting.outOfBox) {
-                        renderSlideItems = (<div>
-                            <div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
-                                {slideCon}
-                            </div>
-                            {buttons}
-                        </div>);
-                    } else {
-                        renderSlideItems = (<div className = 'sliderBox' ref = 'sliderBox' style = {this.setSliderBoxStyles()} >    
-                            {buttons}
+                    renderSlideItems = (<div className = 'sliderSet'>
+                        {buttonSetting.outOfBox ? (buttonSetting.separate ? leftButton : null) : null}
+                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                            {buttonSetting.outOfBox ? null : (buttonSetting.separate ? leftButton : buttons)}  
                             {slideCon}
-                        </div>);
-                    }
+                            {buttonSetting.outOfBox ? null : (buttonSetting.separate ? rightButton : null)}
+                        </div>
+                        {buttonSetting.outOfBox ? (buttonSetting.separate ? rightButton : buttons) : null}
+                    </div>);
                 }
-
             } else {
-                
-                renderSlideItems = (<div className = 'sliderSet' >
-                    <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
-                        {slideCon}
-                    </div>
-                </div>);
-
+                if (this.accEleSetting.dots) {
+                    renderSlideItems = (<div className = 'sliderSet' >
+                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                            {slideCon}
+                        </div>
+                    </div>);
+                } else {
+                    renderSlideItems = (<div className = 'sliderSet' >
+                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                            {(dotsSetting.vertical !== 'beneath') ? dotsSet : null}  
+                            {slideCon}
+                        </div>
+                        {(dotsSetting.vertical === 'beneath') ? dotsSet : null}
+                    </div>);
+                }
             }
         }
         return renderSlideItems;

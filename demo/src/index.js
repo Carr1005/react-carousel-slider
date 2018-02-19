@@ -21,8 +21,8 @@ class Demo extends Component {
     render() {
         
         let jsonData = require('./slidesExample.json');
+        
         let defaultDemo = <CarouselSlider slideItems = {jsonData.basic.items} />;
-
 
         let sliderBoxStyle = {
             width: "60%",
@@ -71,6 +71,14 @@ class Demo extends Component {
             }
         }
 
+        let dotsSetting = {
+            placeOn: 'top',
+            style: {
+                dotSize: "5px",
+                currDotColor: "rgba(155, 108, 27, 0.5)",
+                marginTop: "2px"
+            }
+        }
         
         let customSlideCpnts = jsonData.customSlideCpnt.items.map((item, index) => 
             <Link to = {'/page' + index} key = {index} >
@@ -80,15 +88,17 @@ class Demo extends Component {
             </Link>
         );
 
-        let customSlideCpnt = (<Router><CarouselSlider slideCpnts = {customSlideCpnts} manner = {{circular: false}} sliderBoxStyle = {sliderBoxStyle} buttonSetting = {buttonSetting}  itemsStyle = {itemsStyle}/></Router>);
+        let customSlideCpnt = (<Router><CarouselSlider dotsSetting = {dotsSetting} slideCpnts = {customSlideCpnts} manner = {{circular: false}} sliderBoxStyle = {sliderBoxStyle} buttonSetting = {buttonSetting}  itemsStyle = {itemsStyle}/></Router>);
 
         let manner = {
             autoSliding: {interval: "3s"},
             duration: "2s"      
         };
 
+        let accEleSetting;
+        
         if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
-            manner.button = false;
+            accEleSetting.button = false;
         }
 
         let buttonSetting2 = {
@@ -112,9 +122,8 @@ class Demo extends Component {
             }
         }
         
-        let autoSliding = <CarouselSlider slideItems = {jsonData.autoSliding.items}  manner = {manner} buttonSetting = {buttonSetting2} />;
-
-        
+        let autoSliding = <CarouselSlider accEle = {accEleSetting}  dotsSetting = {{placeOn: 'beneath', style: {marginTop: "30px"}}} slideItems = {jsonData.autoSliding.items}  manner = {manner} buttonSetting = {buttonSetting2} />;
+   
         let buttons = jsonData.buttonsUsage.items.map((item, index) => 
             <Link to = {'/' + item.buttonLabel} key = {index} >
                 <img src = {item.imgSrc} ></img>
@@ -152,8 +161,7 @@ class Demo extends Component {
 
         let rBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_forward</i>);
         let lBtnCpnt = (<i style = {btnStyle} className = "material-icons" >arrow_back</i>);
-        
-        let buttonsUsage = (<Router><CarouselSlider slideCpnts = {buttons} manner = {{circular: false}} sliderBoxStyle = {{width: "80%", background: "transparent"}} buttonSetting = {buttonSetting3} rBtnCpnt = {rBtnCpnt} lBtnCpnt = {lBtnCpnt} itemsStyle = {itemsStyle2} /></Router>);
+        let buttonsUsage = (<Router><CarouselSlider slideCpnts = {buttons} accEle = {{dots: false}} manner = {{circular: false}} sliderBoxStyle = {{width: "80%", background: "transparent"}} buttonSetting = {buttonSetting3} rBtnCpnt = {rBtnCpnt} lBtnCpnt = {lBtnCpnt} itemsStyle = {itemsStyle2} /></Router>);
         
         
         let separaterStyle = {
@@ -169,17 +177,14 @@ class Demo extends Component {
         
         let preCodeStyle = {
             width: "100%",
-            "white-space": "pre-wrap"
-            // display: "inline-block",
-            // margin: "0 auto",
-            // width: "50%"
+            whiteSpace: "pre-wrap"
+            ,color: "#607D8B"
         }
+
         let preJsonStyle = {
             width: "100%",
-            "white-space": "pre-wrap"
-            // display: "inline-block",
-            // margin: "0 auto",
-            // width: "50%"
+            whiteSpace: "pre-wrap",
+            color: "#607D8B"
         }
         
         let titleStyle = {
@@ -189,7 +194,6 @@ class Demo extends Component {
         };
 
         let seoTitleStyle = {
-
             position: "absolute",
             visibility: "hidden"
         };
@@ -210,6 +214,10 @@ class Demo extends Component {
             marginTop: "5px",
             marginBottom: "15px" 
         };
+
+        let inlineCodeStyle = {
+            color: "#607D8B"
+        }
 
         let githubLink = {
             position: "sticky",
@@ -246,10 +254,10 @@ class Demo extends Component {
                     <h2 style = {titleStyle} >Basic</h2>
                     <p style = {desStyle} >
                         This example shows that we could just give an array of objects, let componet render with its default style.
-                        When we are uing <code>prop - slideItems</code>, particular name of key is required :
+                        When we are uing <code style={inlineCodeStyle} >prop - slideItems</code>, particular name of key is required :
                     </p>
                     <p style = {desStyle} >
-                        <code>imgSrc</code> for image source and <code>des</code> for description about image, we could decide to provide <code>des</code> or not, but <code>imgSrc</code> is the must. The require structure of data is shown in the code block below.
+                        <code style={inlineCodeStyle} >imgSrc</code> for image source and <code style={inlineCodeStyle} >des</code> for description about image, we could decide to provide <code style={inlineCodeStyle} >des</code> or not, but <code style={inlineCodeStyle} >imgSrc</code> is the must. The require structure of data is shown in the code block below.
                     </p>
                     {defaultDemo}
                 </div>  
@@ -298,14 +306,15 @@ class Demo extends Component {
                         This example shows:
                     </p>
                     <ul style = {listStyle} >
-                        <li style = {slistStyle} > - We could design our own slide componet and pass it by  <code>prop - slideCpnts</code>.</li>
-                        <li style = {slistStyle} > - Cooperate to <code>{`<Link>`}</code> of <a href = "https://reacttraining.com/react-router/web" >React Router</a> for client side routing is possible, click the slides to see what happens.</li>
-                        <li style = {slistStyle} > - Several features of <code>prop - buttonSetting</code></li>
+                        <li style = {slistStyle} > - We could design our own slide componet and pass it by  <code style={inlineCodeStyle}>prop - slideCpnts</code>.</li>
+                        <li style = {slistStyle} > - Cooperate to <code style={inlineCodeStyle} >{`<Link>`}</code> of <a href = "https://reacttraining.com/react-router/web" >React Router</a> for client side routing is possible, click the slides to see what happens in adress bar.</li>
+                        <li style = {slistStyle} > - Several features of <code style={inlineCodeStyle} >prop - buttonSetting</code>.</li>
+                        
                     </ul>
                     <h4 style = {titleStyle} >Notice</h4>
                     <ul style = {listStyle} >
-                        <li style = {slistStyle} > - <code>img</code> element is required.</li>
-                        <li style = {slistStyle} > - Observe the prop <code>itemsStyle</code> and inline-style object <code>textBoxStyle2</code> to see how to properly handle the css property to achieve the slide we want.</li>
+                        <li style = {slistStyle} > - <code style={inlineCodeStyle} >img</code> element is required.</li>
+                        <li style = {slistStyle} > - Observe the prop <code style={inlineCodeStyle} >itemsStyle</code> and inline-style object <code style={inlineCodeStyle}>textBoxStyle2</code> to see how to properly handle the css property to achieve the slide in our own design.</li>
                     </ul>
                     {customSlideCpnt}
                 </div>
@@ -393,6 +402,15 @@ class Demo extends Component {
                                     }
                                 }
                             }
+
+                            let dotsSetting = {
+                                placeOn: 'top',
+                                style: {
+                                    dotSize: "5px",
+                                    currDotColor: "rgba(155, 108, 27, 0.5)",
+                                    marginTop: "2px"
+                                }
+                            }
                             
                             let customSlideCpnts = jsonData.customSlideCpnt.items.map((item, index) => 
                                 <Link to = {'/page' + index} key = {index} >
@@ -406,7 +424,8 @@ class Demo extends Component {
                                 <CarouselSlider slideCpnts = {customSlideCpnts} 
                                     manner = {{circular: false}} 
                                     sliderBoxStyle = {sliderBoxStyle} 
-                                    buttonSetting = {buttonSetting}  
+                                    dotsSetting = {dotsSetting}
+                                    buttonSetting = {buttonSetting}
                                     itemsStyle = {itemsStyle}
                                 />
                             </Router>);
@@ -420,12 +439,12 @@ class Demo extends Component {
                         This example shows:
                     </p>
                     <ul style = {listStyle} >
-                        <li style = {slistStyle} > - How properties <code>autoSliding</code> and <code>duration</code> in <code>prop - manner</code> work.</li>
-                        <li style = {slistStyle} > - How property <code>hoverEvent</code> in <code>prop - buttonSetting</code> works.</li>
+                        <li style = {slistStyle} > - How properties <code style={inlineCodeStyle} >autoSliding</code> and <code style={inlineCodeStyle} >duration</code> in <code style={inlineCodeStyle} >prop - manner</code> work.</li>
+                        <li style = {slistStyle} > - How property <code style={inlineCodeStyle} >hoverEvent</code> in <code style={inlineCodeStyle} >prop - buttonSetting</code> works.</li>
                         <li style = {slistStyle} > - Touch events are supported for mobile device veiwport.</li>
                         <li style = {slistStyle} > - In the carousel below, the buttons for navigating are visible only while cursour is hovering,
                          so it won't function normally if we are using mobile device, but the touch events would be registered when the situation 
-                         is detected in our component, so dragging is also available. Try by using web devTool or your mobile device.</li>
+                         is detected in our component, so dragging is also available, we could hide the buttons by setting <code style={inlineCodeStyle} >button</code> to <b>false</b> in <code style={inlineCodeStyle} >prop - accEle</code>. Try by using web devTool or your mobile device.</li>
                     </ul>
                     {autoSliding}
                 </div>
@@ -460,9 +479,11 @@ class Demo extends Component {
                                 duration: "2s"
                             };
                             
+                            let accEleSetting;
+
                             let mobileRegx = /Mobi|Tablet|iPad|iPhone/;
                             if (mobileRegx.test(navigator.userAgent)) {
-                                manner.button = false;
+                                accEleSetting.button = false;
                             }
 
                             let buttonSetting = {
@@ -499,9 +520,12 @@ class Demo extends Component {
                 <div id = "trickyUsage" style = {{height: "auto", padding: "50px 0px"}} >
                     <h2 style = {titleStyle} >Tricky Usage</h2>
                     <p style = {desStyle} >
-                        This example shows how we use props <code>lBtnCpnt</code> and <code>rBtnCpnt</code> with <a href = "https://google.github.io/material-design-icons/">Material Icons</a> to have beauties.
-                        Also we could have more creative utilization by using this React component.
+                        This example shows:
                     </p>
+                    <ul style = {listStyle} >
+                        <li style = {slistStyle} > - How we use props <code style={inlineCodeStyle} >lBtnCpnt</code> and <code style={inlineCodeStyle} >rBtnCpnt</code> with <a href = "https://google.github.io/material-design-icons/">Material Icons</a> to have delicate navigation buttons.</li>
+                       <li style = {slistStyle} > - Hide dots by setting <code style={inlineCodeStyle} >dots</code> to <b>false</b> in <code style={inlineCodeStyle} >prop - accEle</code>.</li>
+                    </ul>
                     <h4 style = {titleStyle} >Notice</h4>
                     <ul style = {listStyle} >
                         <li style = {slistStyle} > - We have some important comments at code example below.</li>
@@ -563,14 +587,13 @@ class Demo extends Component {
                             );
 
 
-                            /*
-                                The easy way to integrate material-icons resource into your project is including the 
-                                link below into your index.html:
-                                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                                or import it in your css file:
-                                    @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
-                            */
+                        /*
+                            The easy way to integrate material-icons resource into your project is 
+                            including the link below into your index.html:
+                                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                            or import it in your css file:
+                                @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+                        */
 
                             let btnStyle = {
                                 fontSize: "36px",
@@ -591,7 +614,13 @@ class Demo extends Component {
                             
                             let buttonSetting = {
                                 placeOn: "middle-outside",
-                                style: {     /* Cause that we are passing custom button components, properties here won't be applied.*/
+
+                                /* 
+                                    Cause that we are passing custom button components, properties 
+                                    here won't be applied.
+                                */
+
+                                style: {     
                                     left: {
                                         background: "rgba(111, 111, 111, 0.8)",
                                     },
@@ -601,15 +630,19 @@ class Demo extends Component {
                                 }
                             };
 
-                            /* We use property 'minWidth' to give the button-like slides width space here. In common usage,
-                             this css property should not be used, because of the mechanism of this component behind. It let 
-                             image fit the height of the slider box first then decide the width value of the slide Item, but 
-                             we don't have images here, so we need to give the width by ourselves.*/
+                        /* 
+                            We use property 'minWidth' to give the button-like slides width space here. 
+                            In common usage, this css property should not be used, because of the mechanism 
+                            of this component behind. It let image fit the height of the slider box first 
+                            then decide the width value of the slide item, but we don't have images here, 
+                            so we need to give the width by ourselves.
+                        */
 
                             let buttonsUsage = (
                                 <div style = {{height: "auto", position:"relative", margin: "0 auto", width: "50%", padding: "50px 0px"}} >
                                     <Router>
                                         <CarouselSlider slideCpnts = {buttons} 
+                                            accEle = {{dots: false}}
                                             manner = {{circular: false}} 
                                             sliderBoxStyle = {{width: "80%", background: "transparent"}} 
                                             buttonSetting = {buttonSetting} 

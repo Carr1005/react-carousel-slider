@@ -117,6 +117,8 @@ All props below are optional, default setting is applied if we don't specify our
 The **Key** without prefixng a  \*  is pure css property, what be filled in column **Value** are just recommended because of the anticipated purpose, feel free to try if things are under control.
 
 * [`manner`](#manner)
+* [`accEle`](#accEle)
+* [`dotsSetting`](#dotsSetting)
 * [`buttonSetting`](#buttonSetting)
 * [`lBtnCpnt`](#btnCpnts)
 * [`rBtnCpnt`](#btnCpnts)
@@ -167,12 +169,44 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 | * autoSliding | `{interval: "?s" }` | `false` | Interval between sliding, suffix 's'(seconds)</br>is required, only giving `true` is ineffectual.|
 | * circular    | `true \| false`     | `true`  |                      | 
 | * duration    | `"?s"`              | `"0.5s"`|                      |
-| * button      | `true \| false`     | `true`  | Wheather to render button or not, it may</br>be set to `false` in mobile device viewport.|
+
+***
+
+* `accEle` <a id="accEle"></a> - accepts an object, to decide whether accessory elements show or not.
+
+| Key           | Value               | Default | Description & Notice |
+| * button      | `true \| false`     | `true`  | You may want to set it to `false` in</br>some situations, e.g., in mobile device viewport.|
+| * dots        | `true \| false`     | `true`  |                      |
 | * flag        | `true \| false`     | `false` |                      |
 
 ***
 
-* `buttonSetting` <a id="buttonSetting"></a> - accepts an object, we use `content: '\003c'`, `content: '\003e'` to present buttons now, you may want to design your own by utilizing  props [`lBtnCpnt` and `rBtnCpnt`](#btnCpnts).
+* `dotsSetting` <a id="dotsSetting"></a> - accepts an object, this prop would be ignored if corresponding value of `dots` is set to `false` in prop `accEle`.
+
+| Key           | Value                   | Default      | Description & Notice |
+|:---           |      :---:              |:---:         |:---                  |
+| * placeOn     | `top`</br>\| `bottom`</br>\| `beneath` | Only options in column **Value** are</br>available, fine-tune the position with `margin-`</br>property in `style` below.|
+| * style       | `{}`                    |              |                      |
+
+***
+
+Available keys and expected values in object which `dotsSetting.style` accepts.
+
+| Key             | Value                            | Default      | Description & Notice                |
+|      :---       |      :---:                       |   :---:      |         :---                        |
+| * dotSpace      |     `<length>`                   |  `"5px"`     | Space between dots.                 |
+| * dotSize       |     `<length>`                   |  `"10px"`    | For width and height of dot.        |
+| * dotColor      | `rgb()` \| `rgba()` \| hex value |  `"#dbdbdb"` |                                     |
+| * currDotSize   |    `<length>`                    |  `"12px"`    | For width and height of current dot.|
+| * currDotColor  | `rgb()` \| `rgba()` \| hex value |  `"#3897f0"` |                                     |
+| * marginTop     |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when 
+`placeOn` is set to `top`.|
+| * marginBottom  |     `<length>`                   |  `"15px"`    | To fine-tune the vertical position</br>when 
+`placeOn` is set to `bottom`.|
+
+***
+
+* `buttonSetting` <a id="buttonSetting"></a> - accepts an object, this prop would be ignored if corresponding value of `button` is set to `false` in prop `accEle`. We use `content: '\003c'`, `content: '\003e'` to present buttons, you may want to design your own by utilizing  props [`lBtnCpnt` and `rBtnCpnt`](#btnCpnts).
 
 | Key           | Value                   | Default      | Description & Notice |
 |:---           |      :---:              |:---:         |:---                  |
