@@ -18,6 +18,24 @@ local image
 
 class Demo extends Component {
     
+    
+    componentDidMount() {
+        // window.onhashchange = this.handleHashURL;
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        let target = e.currentTarget.href.split("#")[1];
+        let targetComp = document.getElementById(target);
+        if (targetComp) {
+            targetComp.scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }
+
+    handleHashURL() {
+
+    }
+
     render() {
         
         let jsonData = require('./slidesExample.json');
@@ -208,8 +226,8 @@ class Demo extends Component {
         let btnShell = {
             position: "relative",
             borderRadius: "50%",
-            height: "60px",
-            width: "60px",
+            height: "50px",
+            width: "50px",
             boxShadow: "1px 1px 1px 1px #9E9E9E",
             textAlign: "center"
         }
@@ -307,7 +325,22 @@ class Demo extends Component {
             background: "rgba(117, 117, 117, 0.5)",
             textDecoration: "none",
         };
-        // 
+        
+        let chapterlistStyle = {
+            display: "block",
+            width: "60%",
+            margin: "0px auto",
+            listStyleType: "none",
+            textAlign: "center",
+            padding: "0px"
+        };
+
+        let anchorStyle = {
+            display: "inline-block",
+            textDecoration: "none",
+            color: "#3F51B5",
+            margin: "8px 0px"
+        } 
 
         return (
             
@@ -323,6 +356,13 @@ class Demo extends Component {
                 <h1 style = {seoTitleStyle} >React Component 幻燈片</h1>
                 <h1 style = {seoTitleStyle} >React Component スライド</h1>
                 <h1 style = {seoTitleStyle} >React Component 슬라이드</h1>
+                <ul style = {chapterlistStyle} >
+                    <li><a onClick = {this.handleClick} style = {anchorStyle} href = '#basic' >Basic</a></li>
+                    <li><a onClick = {this.handleClick} style = {anchorStyle} href = '#customCpnt' >Custom Slide Component</a></li>
+                    <li><a onClick = {this.handleClick} style = {anchorStyle} href = '#autoSliding' >Auto Slidng</a></li>
+                    <li><a onClick = {this.handleClick} style = {anchorStyle} href = '#trickyUsage' >Tricky Usage</a></li>
+                    <li><a onClick = {this.handleClick} style = {anchorStyle} href = '#moreExample' >More Examples</a></li>
+                </ul>
                 <div id = "basic" style = {{height: "auto", padding: "50px 0px"}} >
                     <h2 style = {titleStyle} >Basic</h2>
                     <p style = {desStyle} >
@@ -690,7 +730,7 @@ class Demo extends Component {
 
                                 /* 
                                     Cause that we are passing custom button components, properties 
-                                    here won't be applied.
+                                    below won't be applied.
                                 */
 
                                 style: {     
@@ -734,7 +774,7 @@ class Demo extends Component {
                 <div id = "moreExample" style = {{height: "auto", padding: "50px 0px"}} >
                     <h2 style = {titleStyle} >More Examples</h2>
                 </div>
-                <div style = {{position:"relative", margin: "0 auto", width: "70%"}} >
+                <div style = {{position:"relative", margin: "0 auto", width: "80%"}} >
                     {scientistsCard}
                 </div>
                 <div style = {codeBlockStyle}>
@@ -819,8 +859,8 @@ class Demo extends Component {
                             let btnWrapperStyle = {
                                 position: "relative",
                                 borderRadius: "50%",
-                                height: "60px",
-                                width: "60px",
+                                height: "50px",
+                                width: "50px",
                                 boxShadow: "1px 1px 1px 1px #9E9E9E",
                                 textAlign: "center"
                             }
@@ -851,7 +891,7 @@ class Demo extends Component {
                                 lBtnCpnt = {lBtnCpnt}
                             />);
 
-                            return (<div style = {{position:"relative", margin: "0 auto", width: "70%"}} >
+                            return (<div style = {{position:"relative", margin: "0 auto", width: "80%"}} >
                                 {scientistsCard}
                             </div>);
                         }
