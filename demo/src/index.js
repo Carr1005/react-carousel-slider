@@ -95,7 +95,7 @@ class Demo extends Component {
             duration: "2s"      
         };
 
-        let accEleSetting;
+        let accEleSetting = {};
         
         if (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent)) {
             accEleSetting.button = false;
