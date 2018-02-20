@@ -91,7 +91,7 @@
         ]
     },
 
-    "Scientists": {
+    "scientists": {
 
         "items": [
             {
@@ -118,6 +118,32 @@
                 "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/11/Albert_Einstein_photo_1921.jpg",
                 "name": "Albert Einstein",
                 "des": "14 March 1879 – 18 April 1955"
+            }
+        ] 
+    },
+
+    "icons": {
+
+        "items": [
+            {
+                "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Vectorized_Apple_gray_logo.svg/2000px-Vectorized_Apple_gray_logo.svg.png",
+                "des": "2000 x 2000"
+            },
+            {
+                "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/16/Facebook-icon-1.png",
+                "des": "1024 x 1024"
+            },
+            {
+                "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/YouTube_play_button_square_%282013-2017%29.svg/2000px-YouTube_play_button_square_%282013-2017%29.svg.png",
+                "des": "2000 x 2000"
+            },
+            {
+                "imgSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwiKw9xPE6ZTl490JW-wqvQZD5shpSraY8CLCs5-8VEMK7sO1H",
+                "des": "800 x 800"
+            },
+            {
+                "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/1024px-Windows_logo_-_2012.svg.png",
+                "des": "800 x 800"
             }
         ] 
     }

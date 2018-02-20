@@ -215,7 +215,7 @@ class Demo extends Component {
             fontStyle: "italic"
         };
 
-        let scientists = jsonData.Scientists.items.map((item, index) => 
+        let scientists = jsonData.scientists.items.map((item, index) => 
             <div key = {index} >
                 <img style = {imgStyle} src = {item.imgSrc} ></img>
                 <p style = {textBoxStyle5} >{item.name}</p>
@@ -253,7 +253,31 @@ class Demo extends Component {
             lBtnCpnt = {glBtnCpnt}
         />);
 
+        let iconItemsStyle = {
+            padding: "0px",
+            background: "transparent",
+            margin:"0 30px",
+            height: "50%"
+        };
+
+        let circleIcon = {
+            borderRadius: "50%"
+        }
         
+        let iconsSlides = jsonData.icons.items.map((item, index) => 
+            <div key = {index} >
+                <img style = {circleIcon} src = {item.imgSrc} ></img>
+                <p style = {{width: "60%", top: "70%",fontSize: "10px"}} >{item.des}</p>
+            </div>
+        );
+
+        let icons = (<CarouselSlider 
+            sliderBoxStyle = {{height: "250px", width: "80%", background: "transparent"}} 
+            accEle = {{dots: false}}
+            slideCpnts = {iconsSlides} 
+            itemsStyle = {iconItemsStyle}
+            buttonSetting = {{placeOn: 'middle-outside'}}
+        />);
 
         let separaterStyle = {
             width: "80%", 
@@ -898,7 +922,46 @@ class Demo extends Component {
 
                     `}</pre>
                 </div>
+                <div style = {{position:"relative", margin: "0 auto", width: "80%"}} >
+                    {icons}
+                </div>
+                <div style = {codeBlockStyle}>
+                    <h4 style = {titleStyle} >.js</h4>
+                    <pre style = {preCodeStyle}>{`
+                        render() {
 
+                            let iconItemsStyle = {
+                                padding: "0px",
+                                background: "transparent",
+                                margin:"0 30px",
+                                height: "50%"
+                            };
+
+                            let circleIcon = {
+                                borderRadius: "50%"
+                            }
+                            
+                            let iconsSlides = jsonData.icons.items.map((item, index) => 
+                                <div key = {index} >
+                                    <img style = {circleIcon} src = {item.imgSrc} ></img>
+                                    <p style = {{width: "60%", top: "70%",fontSize: "10px"}} >{item.des}</p>
+                                </div>
+                            );
+
+                            let icons = (<CarouselSlider 
+                                sliderBoxStyle = {{height: "250px", width: "80%", background: "transparent"}} 
+                                accEle = {{dots: false}}
+                                slideCpnts = {iconsSlides} 
+                                itemsStyle = {iconItemsStyle}
+                                buttonSetting = {{placeOn: 'middle-outside'}}
+                            />);
+                            
+                            return (<div style = {{position:"relative", margin: "0 auto", width: "80%"}} >
+                                {icons}
+                            </div>);
+                        }
+                    `}</pre>
+                </div>
             </div>
         );
     }
