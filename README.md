@@ -12,7 +12,7 @@ A React component that endeavors to provide flexbility for customizing carousel/
 
 ## Installation
 
-Install it from npm.
+Install it from [npm](https://www.npmjs.com/package/react-carousel-slider).
 
 ```js
 npm install react-carousel-slider
