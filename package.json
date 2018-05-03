@@ -1,6 +1,6 @@
 {
   "name": "react-carousel-slider",
-  "version": "2.0.5",
+  "version": "2.0.13",
   "description": "react-carousel-slider React component",
   "main": "lib/index.js",
   "module": "es/index.js",
