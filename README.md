@@ -262,8 +262,8 @@ Recommended keys and values in object which `buttonSetting.style.left` or `butto
 | color           | hex value                        | `"#ffffff"`                 |                      |
 | padding         | `<length>` \| `<percentage>`     | `"10px"`                    |                      |
 | background      | `rgb()` \| `rgba()` \| hex value | `"rgba(117, 117, 117, .6)"` |                      |
-| "border-radius" | `<length>` \| `<percentage>`     | `"2px"`                     |                      |
-| "text-align"    | `left \| right \| center`        | `"center"`                  |                      |
+| borderRadius | `<length>` \| `<percentage>`     | `"2px"`                     |                      |
+| textAlign    | `left \| right \| center`        | `"center"`                  |                      |
 | width           | `<length>` \| `<percentage>`     | `"75%"`                     |                      |
 | top             | `<length>` \| `<percentage>`     | `"80%"`                     | To adjust vertical position.</br>`50%` for centering.|
 | fontSize        | `<length>`                       |                             |                      |
