@@ -109,8 +109,8 @@ class App extends Component {
 ## Allowable Props
 
 
-* [`slidesItems`](#slidesItems)
-* [`slidesCpnts`](#slidesCpnts)
+* [`slideItems`](#slideItems)
+* [`slideCpnts`](#slideCpnts)
 
 All props below are optional, default setting is applied if we don't specify ours.
 
@@ -129,7 +129,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
 
 ***
 
-* `slidesItems` <a id="slidesItems"></a> -  accepts an array of objects, specific structure and keys are required.
+* `slideItems` <a id="slideItems"></a> -  accepts an array of objects, specific structure and keys are required.
 ```js
     [
         {
@@ -142,7 +142,7 @@ The **Key** without prefixng a  \*  is pure css property, what be filled in colu
         }
     ]
 ```
-* `slidesCpnts` <a id="slidesCpnts"></a> -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style](#textBoxStyle) for `<p>` block, override it by specifying your own with using inline-styles.
+* `slideCpnts` <a id="slideCpnts"></a> -  accepts an array of regular React elements, the `<img></img>` element and available image source are required, we have the [default style](#textBoxStyle) for `<p>` block, override it by specifying your own with using inline-styles.
     
 ```jsx
     let textBoxStyle = {

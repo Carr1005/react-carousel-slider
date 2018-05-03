@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import './CarouselSlider.css';
 
 class CarouselSlider extends Component {
@@ -92,7 +93,6 @@ class CarouselSlider extends Component {
             padding: "3px",
             background: "#FAFAFA",
             margin: "0px 40px"
-
             // ,minWidth: "100px" 
         };
 
@@ -907,16 +907,16 @@ class CarouselSlider extends Component {
             if (this.accEleSetting.button) {
                 
                 buttonSetting = this.detectButtonPosition();
-                lButtonIcon = this.props.lBtnCpnt ? this.props.lBtnCpnt : (<div className = 'arrowBtn previous' style = {this.setLeftButtonStyle()} ></div>);
-                rButtonIcon = this.props.rBtnCpnt ? this.props.rBtnCpnt : (<div className = 'arrowBtn next' style = {this.setRightButtonStyle()} ></div>);
+                lButtonIcon = this.props.lBtnCpnt ? this.props.lBtnCpnt : (<div className = 'rcs_arrowBtn rcs_previous' style = {this.setLeftButtonStyle()} ></div>);
+                rButtonIcon = this.props.rBtnCpnt ? this.props.rBtnCpnt : (<div className = 'rcs_arrowBtn rcs_next' style = {this.setRightButtonStyle()} ></div>);
                 
                 if (buttonSetting.separate) {
-                    leftButton = (<div className = 'buttonWrapper left' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>);
-                    rightButton = (<div className = 'buttonWrapper right' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(1)} >{rButtonIcon}</div>);
+                    leftButton = (<div className = 'rcs_buttonWrapper rcs_left' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>);
+                    rightButton = (<div className = 'rcs_buttonWrapper rcs_right' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(1)} >{rButtonIcon}</div>);
                 } else {
-                    buttons = (<div className = 'buttonSet' style = {this.allocateButtonSet(buttonSetting)} >
-                        <div className = 'buttonWrapper' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>
-                        <div className = 'buttonWrapper' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(1)} >{rButtonIcon}</div>
+                    buttons = (<div className = 'rcs_buttonSet' style = {this.allocateButtonSet(buttonSetting)} >
+                        <div className = 'rcs_buttonWrapper' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(-1)} >{lButtonIcon}</div>
+                        <div className = 'rcs_buttonWrapper' style = {this.setHoverEvent()} onClick = {() => this.handleButtonClick(1)} >{rButtonIcon}</div>
                     </div>);
                 }
             }
@@ -930,11 +930,11 @@ class CarouselSlider extends Component {
             } else {
 
                 if (this.accEleSetting.flag) {
-                    sflag = (<div className = 'flag' ref = 'sflag' style = {{order: 0}} key = {'sflag'} ></div>) 
-                    eflag = (<div className = 'flag' ref = 'eflag' style = {{order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
+                    sflag = (<div className = 'rcs_flag' ref = 'sflag' style = {{order: 0}} key = {'sflag'} ></div>) 
+                    eflag = (<div className = 'rcs_flag' ref = 'eflag' style = {{order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
                 } else {
-                    sflag = (<div className = 'flag' ref = 'sflag' style = {{background: "transparent", order: 0}} key = {'sflag'} ></div>) 
-                    eflag = (<div className = 'flag' ref = 'eflag' style = {{background: "transparent", order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
+                    sflag = (<div className = 'rcs_flag' ref = 'sflag' style = {{background: "transparent", order: 0}} key = {'sflag'} ></div>) 
+                    eflag = (<div className = 'rcs_flag' ref = 'eflag' style = {{background: "transparent", order: this.slideCnt + 1}} key = {'eflag'} ></div>); 
                 }
                 items = this.slideEls.map((slideEl, index) => this.slideItemHandler(slideEl, index + 1));
                 items.unshift(sflag);
@@ -943,13 +943,13 @@ class CarouselSlider extends Component {
 
 
             /*Use margin to tune the button position*/
-            slideCon = this.mobileDetect() ? (<div className = "slideCon" ref = "slideCon" 
+            slideCon = this.mobileDetect() ? (<div className = 'rcs_slideCon' ref = 'slideCon' 
                 style = {this.setSlideConHeight()} 
                 onTouchStart = {e => this.handleTouchStart(e)}
                 onTouchMove = {e => this.handleTouchMove(e)}
                 onTouchEnd = {e => this.handleTouchEnd(e)} >
                     {items}
-            </div>) : (<div className = 'slideCon' ref = 'slideCon' 
+            </div>) : (<div className = 'rcs_slideCon' ref = 'slideCon' 
                 onDragStart = {e => this.handleDragStart(e)} 
                 onDragEnd = {e => this.handleDragStop(e)} 
                 onDragOver = {e => this.handleDragOver(e)}
@@ -969,14 +969,14 @@ class CarouselSlider extends Component {
                     }
                     dots.push(dot);
                 } 
-                dotsSet = (<div className = 'dotsSet' style = {this.allocateDotsSet(dotsSetting)}>{dots}</div>);
+                dotsSet = (<div className = 'rcs_dotsSet' style = {this.allocateDotsSet(dotsSetting)}>{dots}</div>);
             }
     
             if (this.accEleSetting.button) {
                 if (this.accEleSetting.dots) {
-                    renderSlideItems = (<div className = 'sliderSet'>
+                    renderSlideItems = (<div className = 'rcs_sliderSet'>
                         {buttonSetting.outOfBox ? (buttonSetting.separate ? leftButton : null) : null}
-                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                        <div className = "rcs_sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
                             {buttonSetting.outOfBox ? null : (buttonSetting.separate ? leftButton : buttons)}
                             {(dotsSetting.vertical !== 'beneath') ? dotsSet : null}  
                             {slideCon}
@@ -986,9 +986,9 @@ class CarouselSlider extends Component {
                         {buttonSetting.outOfBox ? (buttonSetting.separate ? rightButton : buttons) : null}
                     </div>);
                 } else {
-                    renderSlideItems = (<div className = 'sliderSet'>
+                    renderSlideItems = (<div className = 'rcs_sliderSet'>
                         {buttonSetting.outOfBox ? (buttonSetting.separate ? leftButton : null) : null}
-                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                        <div className = "rcs_sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
                             {buttonSetting.outOfBox ? null : (buttonSetting.separate ? leftButton : buttons)}  
                             {slideCon}
                             {buttonSetting.outOfBox ? null : (buttonSetting.separate ? rightButton : null)}
@@ -998,14 +998,14 @@ class CarouselSlider extends Component {
                 }
             } else {
                 if (this.accEleSetting.dots) {
-                    renderSlideItems = (<div className = 'sliderSet' >
-                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                    renderSlideItems = (<div className = 'rcs_sliderSet' >
+                        <div className = "rcs_sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
                             {slideCon}
                         </div>
                     </div>);
                 } else {
-                    renderSlideItems = (<div className = 'sliderSet' >
-                        <div className = "sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
+                    renderSlideItems = (<div className = 'rcs_sliderSet' >
+                        <div className = "rcs_sliderBox" ref = 'sliderBox' style = {this.setSliderBoxStyles()} >
                             {(dotsSetting.vertical !== 'beneath') ? dotsSet : null}  
                             {slideCon}
                         </div>
@@ -1017,5 +1017,105 @@ class CarouselSlider extends Component {
         return renderSlideItems;
     }
 }
+
+CarouselSlider.propTypes = {
+
+    slideItems: PropTypes.arrayOf((propValue, key, componentName, location, propFullName) => {
+        if (!propValue[key].hasOwnProperty('imgSrc')) {
+            console.log(key);
+            return new Error(`Fail validation at component '${componentName}', object with property 'imgSrc' is 
+                required while using prop 'slideItems'.`)
+        }        
+    }),
+
+    slideCpnts: PropTypes.arrayOf(PropTypes.element),
+
+    manner: PropTypes.shape({
+        autoSliding: PropTypes.object,
+        circular: PropTypes.bool,
+        duration: PropTypes.string
+    }),
+
+    accEle: PropTypes.shape({
+        button: PropTypes.bool,
+        dots: PropTypes.bool,
+        flag: PropTypes.bool
+    }),
+
+    dotsSetting: PropTypes.shape({
+        placeOn: PropTypes.oneOf(['top', 'bottom', 'beneath']),
+        style: PropTypes.shape({
+            dotSpace: PropTypes.string,
+            dotSize: PropTypes.string,
+            dotColor: PropTypes.string,
+            currDotSize: PropTypes.string,
+            currDotColor: PropTypes.string,
+            marginTop: PropTypes.string,
+            marginBottom: PropTypes.string
+        })
+    }),
+
+    buttonSetting: PropTypes.shape({
+        placeOn: PropTypes.oneOf(['top-left', 'top-right', 'middle-inside', 'middle-outside', 
+            'bottom-left', 'bottom-right', 'bottom-beneath']),
+        
+        hoverEvent: PropTypes.bool,
+        style: PropTypes.shape({
+            left: PropTypes.shape({
+                color: PropTypes.string,
+                background: PropTypes.string,
+                height: PropTypes.string,
+                width: PropTypes.string,
+                margin: PropTypes.string,
+                fontSize: PropTypes.string,
+                borderRadius: PropTypes.string,
+                border: PropTypes.string
+            }),
+
+            right: PropTypes.shape({
+                color: PropTypes.string,
+                background: PropTypes.string,
+                height: PropTypes.string,
+                width: PropTypes.string,
+                margin: PropTypes.string,
+                fontSize: PropTypes.string,
+                borderRadius: PropTypes.string,
+                border: PropTypes.string
+            })
+
+        })
+    }),
+
+    lBtnCpnt: PropTypes.element,
+    rBtnCpnt: PropTypes.element,
+
+    sliderBoxStyle: PropTypes.shape({
+        height: PropTypes.string,
+        width: PropTypes.string,
+        background: PropTypes.string,
+        border: PropTypes.string
+    }),
+
+    itemsStyle: PropTypes.shape({
+        height: PropTypes.string,
+        padding: PropTypes.string,
+        background: PropTypes.string,
+        margin: PropTypes.string,
+        minWidth: PropTypes.string
+    }),
+
+    textBoxStyle: PropTypes.shape({
+        color: PropTypes.string,
+        padding: PropTypes.string,
+        background: PropTypes.string,
+        borderRadius: PropTypes.string,
+        textAlign: PropTypes.string,
+        width: PropTypes.string,
+        top: PropTypes.string,
+        fontSize: PropTypes.string,
+        fontWeight: PropTypes.string
+    })
+
+};
 
 export default CarouselSlider;
